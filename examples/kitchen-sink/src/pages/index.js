@@ -42,10 +42,6 @@ const Wrapper = styled.section`
   width: 100vw;
 `;
 
-const title = css;
-
-const subtitle = css({});
-
 const IndexPage = ({ data }) => (
   <Fragment>
     <Helmet>

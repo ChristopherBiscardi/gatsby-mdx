@@ -761,27 +761,20 @@
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.7.3.tgz#4240c5eee8af86843452af7497ac2808be04a77d"
 
-"@mdx-js/loader@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-0.14.1.tgz#975e69cabda1f8f389db28fc7cf533592b364d89"
+"@mdx-js/loader@^0.15.0-0":
+  version "0.15.0-0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-0.15.0-0.tgz#6ef7db6040072e0480cdccfca4e92337f7df60d3"
   dependencies:
     "@mdx-js/tag" "^0.14.0"
 
-"@mdx-js/mdx@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.14.1.tgz#11d627d4317a2385e3838a9ed4db2f180031017a"
+"@mdx-js/mdx@^0.15.0-0":
+  version "0.15.0-0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.15.0-0.tgz#ec50dd43a8da98a0b34f4193ade396f866453a16"
   dependencies:
-    "@mdx-js/mdxast" "^0.10.0"
     mdast-util-to-hast "^3.0.0"
     remark-parse "^5.0.0"
     remark-squeeze-paragraphs "^3.0.1"
     unified "^6.1.6"
-    unist-util-visit "^1.3.0"
-
-"@mdx-js/mdxast@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@mdx-js/mdxast/-/mdxast-0.10.0.tgz#5d8dfdf96290151487dc07fb42031f3f47b8671e"
-  dependencies:
     unist-util-visit "^1.3.0"
 
 "@mdx-js/tag@^0.14.0":
