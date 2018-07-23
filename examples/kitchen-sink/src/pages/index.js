@@ -1,9 +1,8 @@
-import React, { Fragment } from "react"
-import Helmet from "react-helmet"
-import { injectGlobal } from "emotion"
-import styled, { css } from "react-emotion"
-
-// Emotion supports different styling options, all of which are supported by gatsby-plugin-emotion out of the box
+import React, { Fragment } from "react";
+import Helmet from "react-helmet";
+import { injectGlobal } from "emotion";
+import styled, { css } from "react-emotion";
+import { graphql, Link } from "gatsby";
 
 injectGlobal`
   * {
@@ -11,7 +10,7 @@ injectGlobal`
     padding: 0;
     box-sizing: border-box;
   }
-`
+`;
 
 injectGlobal`
   html, body {
@@ -31,9 +30,8 @@ injectGlobal`
       "Segoe UI Emoji",
       "Segoe UI Symbol";
   }
-`
+`;
 
-// Using styled (similar API as styled-components)
 const Wrapper = styled.section`
   align-items: center;
   background: #282a36;
@@ -42,48 +40,93 @@ const Wrapper = styled.section`
   height: 100vh;
   justify-content: center;
   width: 100vw;
-`
+`;
 
-// Using css with template literal
-const title = css`
-  font-size: 1.5em;
-  color: #ff79c6;
-  margin-bottom: 0.5em;
+const title = css;
 
-  a {
-    color: #8be9fd;
-  }
-`
+const subtitle = css({});
 
-// Using css with object
-const subtitle = css({
-  color: `#bd93f9`,
-})
-
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Fragment>
     <Helmet>
       <title>Gatsby Emotion</title>
       <meta name="description" content="Gatsby example site using Emotion" />
       <meta name="referrer" content="origin" />
-    </Helmet>` `<Wrapper>
-      <h1 className={title}>
+    </Helmet>
+    <Wrapper>
+      <h1
+        css={`
+          font-size: 1.5em;
+          color: #ff79c6;
+          margin-bottom: 0.5em;
+        `}
+      >
         Hello World, this is my first component styled with{` `}
-        <a href="https://emotion.sh/">emotion</a>!
+        <a
+          css={`
+            color: #8be9fd;
+          `}
+          href="https://emotion.sh/"
+        >
+          emotion
+        </a>!
       </h1>
-      <p className={subtitle}>
+      <p
+        css={`
+          color: #bd93f9;
+        `}
+      >
         <a
           href="https://www.gatsbyjs.org/packages/gatsby-plugin-emotion/"
-          // Styling “inline” with css prop
-          css={css`
+          css={`
             color: inherit;
           `}
         >
           gatsby-plugin-emotion docs
         </a>
       </p>
+      <h2
+        css={`
+          margin-top: 1.5em;
+        `}
+      >
+        Example Pages
+      </h2>
+      <ul
+        css={`
+          list-style-type: none;
+        `}
+      >
+        {data.allSitePage.edges.map(({ node }) => (
+          <li>
+            <Link
+              css={`
+                color: #8be9fd;
+              `}
+              to={node.path}
+            >
+              {node.path}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </Wrapper>
   </Fragment>
-)
+);
 
-export default IndexPage
+export default IndexPage;
+
+export const pageQuery = graphql`
+  query IndexPageQuery {
+    allSitePage {
+      pageInfo {
+        hasNextPage
+      }
+      edges {
+        node {
+          path
+        }
+      }
+    }
+  }
+`;
