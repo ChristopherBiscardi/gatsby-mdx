@@ -7,9 +7,10 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-mdx`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        trackingId: `UA-93349937-2`
+        name: "posts",
+        path: `${__dirname}/content/`
       }
     },
     `gatsby-plugin-offline`
