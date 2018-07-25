@@ -5,8 +5,20 @@
   "description": "mdx integrations and examples for gatsby",
   "main": "index.js",
   "license": "MIT",
-  "workspaces": [
-    "examples/*",
-    "packages/*"
-  ]
+  "workspaces": ["examples/*", "packages/*"],
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": ["prettier --parser flow --write", "git add"],
+    "*.json": ["prettier --parser json --write", "git add"],
+    "*.{graphql,gql}": ["prettier --parser graphql --write", "git add"],
+    "*.{md,markdown}": ["prettier --parser markdown --write", "git add"],
+    "*.{css,scss}": ["prettier --parser css --write", "git add"]
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7"
+  }
 }
