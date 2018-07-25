@@ -1,11 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby with Emotion`
+    title: `Gatsby MDX Kitchen Sink`
   },
   plugins: [
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-mdx`,
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        defaultLayout: require.resolve(
+          "./src/components/default-page-layout.js"
+        )
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
