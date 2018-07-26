@@ -16,11 +16,11 @@ module.exports = {
   siteMetadata: {
     title: `My Ambitious Project`
   },
-  plugins: [
-    `gatsby-mdx`
-  ]
+  plugins: [`gatsby-mdx`]
 };
 ```
+
+note: gatsby-mdx is [only compatible with gatsby versions > 2](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22)
 
 ## Writing Pages in MDX
 
