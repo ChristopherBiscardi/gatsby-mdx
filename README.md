@@ -6,7 +6,7 @@
 ## Initial Setup
 
 ```bash
-yarn add gatsby-mdx
+npm install gatsby-mdx @mdx-js/loader @mdx-js/mdx
 ```
 
 then add `gatsby-mdx` to your `gatsby-config.js` in the `plugins` section.
@@ -17,10 +17,7 @@ module.exports = {
     title: `My Ambitious Project`
   },
   plugins: [
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-mdx`,
-    `gatsby-plugin-offline`
+    `gatsby-mdx`
   ]
 };
 ```
@@ -63,7 +60,7 @@ MDX supports layouts using the default export as such:
 ```javascript
 export default ({ children }) => (
   <div>
-    <h1>MyLayout</h1>
+    <h1>My Layout</h1>
     <div>{children}</div>
   </div>
 )
