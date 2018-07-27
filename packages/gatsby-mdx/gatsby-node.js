@@ -1,11 +1,15 @@
 const crypto = require("crypto");
 const path = require("path");
-const grayMatter = require("gray-matter");
-const escapeStringRegexp = require('escape-string-regexp');
+const merge = require("lodash.merge");
+const escapeStringRegexp = require("escape-string-regexp");
 const mdx = require("./utils/mdx");
+const extractExports = require("./utils/extract-exports");
 
-const defaultExtensions = [".mdx"]
+const defaultExtensions = [".mdx"];
 
+/**
+ * Create Mdx nodes from MDX files.
+ */
 exports.onCreateNode = async function onCreateNode(
   { node, getNode, loadNodeContent, actions, createNodeId },
   pluginOptions
@@ -21,22 +25,36 @@ exports.onCreateNode = async function onCreateNode(
   }
 
   const nodeContent = await loadNodeContent(node);
-  const { content, data } = grayMatter(nodeContent);
+  const code = await mdx(nodeContent);
+
+  // extract all the exports
+  const nodeExports = extractExports(code);
+
+  // grab the frontmatter
+  const classicFrontmatter = nodeExports._frontmatter || {};
+  const exportFrontmatter = nodeExports.frontmatter || {};
+
+  // // delete the frontmatter from the exports
+  delete nodeExports._frontmatter;
+  delete nodeExports.frontmatter;
+
+  const frontmatter = merge(classicFrontmatter, exportFrontmatter);
 
   const mdxNode = {
     id: createNodeId(`${node.id} >>> Mdx`),
     children: [],
     parent: node.id,
     internal: {
-      content: content,
+      content: nodeContent,
       type: `Mdx`
     },
     frontmatter: {
       title: ``, // always include a title
-      ...data,
+      ...frontmatter,
       _PARENT: node.id
     },
-    rawBody: content
+    exports: nodeExports,
+    rawBody: nodeContent
   };
 
   // Add path to the markdown file path
@@ -63,8 +81,8 @@ exports.onCreateWebpackConfig = (
 ) => {
   const extensions = pluginOptions.extensions || defaultExtensions;
   const testPattern = new RegExp(
-    extensions.map((ext) => `${escapeStringRegexp(ext)}$`).join('|')
-  )
+    extensions.map(ext => `${escapeStringRegexp(ext)}$`).join("|")
+  );
 
   actions.setWebpackConfig({
     module: {
@@ -89,10 +107,16 @@ exports.onCreateWebpackConfig = (
   });
 };
 
-exports.resolvableExtensions = (data, pluginOptions) => (
-  pluginOptions.extensions || defaultExtensions
-);
+/**
+ * Add the MDX extensions as resolvable. This is how the page creator
+ * determines which files in the pages/ directory get built as pages.
+ */
+exports.resolvableExtensions = (data, pluginOptions) =>
+  pluginOptions.extensions || defaultExtensions;
 
+/**
+ * Convert MDX to JSX so that Gatsby can extract the GraphQL queries.
+ */
 exports.preprocessSource = async function preprocessSource(
   { filename, contents },
   pluginOptions
