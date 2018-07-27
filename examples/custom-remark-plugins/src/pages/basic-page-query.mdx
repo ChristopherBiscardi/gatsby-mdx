@@ -1,0 +1,18 @@
+import { graphql } from 'gatsby';
+
+export const pageQuery = graphql`
+query BasicWithQuery {
+    allSitePage {
+      edges {
+        node {
+          path
+        }
+      }
+    }
+  }
+`
+
+
+# A title
+
+Some content
