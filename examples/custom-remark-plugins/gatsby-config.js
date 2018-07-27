@@ -12,7 +12,7 @@ module.exports = {
         defaultLayout: require.resolve(
           "./src/components/default-page-layout.js"
         ),
-        mdPlugins: [require(require.resolve("remark-toc"))]
+        mdPlugins: [require("remark-toc")]
       }
     },
     {
