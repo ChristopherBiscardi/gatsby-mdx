@@ -1,0 +1,3 @@
+# A non-page
+
+In not the pages directory, with nothing special about it

@@ -1,0 +1,26 @@
+---
+title: "Title unrelated to filename"
+some: "content"
+a: 5
+---
+
+export const frontmatter = {
+  title: 'nah, this is the title',
+  newfield: 'here',
+  computed: 1 + 2
+}
+
+export const author = {
+  name: 'Avi',
+  email: 'me@avigoldman.com'
+}
+
+import PageLayout from '../src/components/page-layout'
+
+export const Layout = PageLayout
+
+export default PageLayout
+
+# A non-page with a custom layout
+
+In not the pages directory, with nothing special about it
