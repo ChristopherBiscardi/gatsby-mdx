@@ -20,7 +20,8 @@ module.exports = {
 };
 ```
 
-note: gatsby-mdx is [only compatible with gatsby versions > 2](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22)
+*Note: `gatsby-mdx` is [only compatible with Gatsby version 2 or newer](
+https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22).*
 
 ## Writing Pages in MDX
 
@@ -36,7 +37,7 @@ some awesome content
 
 ### File Extensions
 
-gatsby-mdx can apply to different file extensions. By default it
+`gatsby-mdx` can apply to different file extensions. By default it
 conservatively applies to only `.mdx` files, but can also be made to
 apply to `.md` files.
 
@@ -83,7 +84,7 @@ some content
 ```
 
 Sometimes you don't want to include the layout in every file, so
-gatsby-mdx offers the option to set a default layout in the
+`gatsby-mdx` offers the option to set a default layout in the
 `gatsby-config.js` plugin config:
 
 ```javascript
