@@ -6,7 +6,7 @@
 ## Initial Setup
 
 ```bash
-npm install gatsby-mdx @mdx-js/loader @mdx-js/mdx
+npm install gatsby-mdx @mdx-js/mdx
 ```
 
 then add `gatsby-mdx` to your `gatsby-config.js` in the `plugins` section.
@@ -20,8 +20,7 @@ module.exports = {
 };
 ```
 
-*Note: `gatsby-mdx` is [only compatible with Gatsby version 2 or newer](
-https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22).*
+_Note: `gatsby-mdx` is [only compatible with Gatsby version 2 or newer](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22)._
 
 ## Writing Pages in MDX
 
@@ -107,7 +106,9 @@ module.exports = {
 
 ### GraphQL
 
-MDX files can be queried with `allMdx` on the root query.
+MDX files can be queried with `allMdx` on the root query. Like `gatsby-transformer-remark`, this plugin adds fields to the Mdx node including `excerpt`, `headings`, `timeToRead`, and `wordCount`.
+
+All static exports – values that would be valid JSON – are queryable through the `exports` field.
 
 ```graphql
 query MDXQuery {
@@ -118,6 +119,10 @@ query MDXQuery {
         fileAbsolutePath
         fileNode {
           name
+        }
+        timeToRead
+        exports {
+          author
         }
       }
     }
