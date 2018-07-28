@@ -1,5 +1,12 @@
 import { graphql } from 'gatsby';
 
+export default ({children, ...props}) => (
+  <div className="my custom layout">
+    <div>{children}</div>
+    <pre>{JSON.stringify(props, null, 2)}</pre>
+  </div>
+)
+
 export const pageQuery = graphql`
 query BasicWithQuery {
     allSitePage {
