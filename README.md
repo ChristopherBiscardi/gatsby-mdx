@@ -6,7 +6,7 @@
 ## Initial Setup
 
 ```bash
-npm install gatsby-mdx @mdx-js/mdx
+npm install gatsby-mdx @mdx-js/mdx @mdx-js/tag
 ```
 
 then add `gatsby-mdx` to your `gatsby-config.js` in the `plugins` section.
