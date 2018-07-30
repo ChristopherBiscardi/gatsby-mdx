@@ -197,12 +197,32 @@ exports.createPages = ({ graphql, actions }) => {
 
 ## Using Design System Components
 
-Using MDX, you can replace every html element that markdown renders to
+Using MDX, you can replace every HTML element that Markdown renders
 with a custom implementation. This allows you to use a set of design
-system components to when rendering markdown.
+system components when rendering Markdown.
 
-```javascript
-<MDXProvider components={{ h1: H1 }}>{this.props.children}</MDXProvider>
+```js
+// src/components/layout.js
+
+import { MDXProvider } from "@mdx-js/tag";
+import * as DesignSystem from "your-design-system";
+
+export default function Layout({ children }) {
+  return (
+    <MDXProvider
+      components={{
+        // Map HTML element tag to React component
+        h1: DesignSystem.H1,
+        h2: DesignSystem.H2,
+        h3: DesignSystem.H3,
+        // Or define component inline
+        p: props => <p {...props} style={{ color: "rebeccapurple" }} />
+      }}
+    >
+      {children}
+    </MDXProvider>
+  );
+}
 ```
 
 ## Editable Code Blocks
