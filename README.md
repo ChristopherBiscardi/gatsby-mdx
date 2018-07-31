@@ -226,3 +226,29 @@ export default function Layout({ children }) {
 ```
 
 ## Editable Code Blocks
+
+To make every markdown code block an editable live example, you can pass in a custom `code` element to MDXProvider.
+
+![react-live](./img/react-live.png)
+
+```javascript
+import React, {Component} from "react";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import { MDXProvider } from '@mdx-js/tag'
+
+const MyCodeComponent = ({ children, ...props }) => (
+  <LiveProvider code={children}>
+    <LiveEditor />
+    <LiveError />
+    <LivePreview />
+  </LiveProvider>
+);
+
+export default MyPageLayout extends Component {
+  render() {
+    return <MDXProvider components={{code: MyCodeComponent}}>
+      <div>{this.props.children}</div>
+    </MDXProvider>
+  }
+}
+```
