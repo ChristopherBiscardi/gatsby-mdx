@@ -121,6 +121,9 @@ query MDXQuery {
           name
         }
         timeToRead
+        frontmatter {
+          title
+        }
         exports {
           author
         }
