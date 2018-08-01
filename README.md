@@ -20,7 +20,8 @@ module.exports = {
 };
 ```
 
-_Note: `gatsby-mdx` is [only compatible with Gatsby version 2 or newer](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22)._
+_Note: `gatsby-mdx` is [only compatible with Gatsby version 2 or
+newer](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/22)._
 
 ## Writing Pages in MDX
 
@@ -37,8 +38,8 @@ some awesome content
 ### File Extensions
 
 `gatsby-mdx` can apply to different file extensions. By default it
-conservatively applies to only `.mdx` files, but can also be made to
-apply to `.md` files.
+conservatively applies to only `.mdx` files, but can also be made to apply to
+`.md` files.
 
 ```javascript
 module.exports = {
@@ -82,12 +83,13 @@ export PageLayout
 some content
 ```
 
-Sometimes you don't want to include the layout in every file, so
-`gatsby-mdx` offers the option to set default layouts in the
-`gatsby-config.js` plugin config. Set the key to the `name` set in the `gatsby-source-filesystem` config.
+Sometimes you don't want to include the layout in every file, so `gatsby-mdx`
+offers the option to set default layouts in the `gatsby-config.js` plugin
+config. Set the key to the `name` set in the `gatsby-source-filesystem` config.
 If no matching default layout is found, the `default` default layout is used.
 
-You can also set `options.defaultLayout` if you only want to use one layout for all MDX pages.
+You can also set `options.defaultLayout` if you only want to use one layout for
+all MDX pages.
 
 ```javascript
 module.exports = {
@@ -103,6 +105,13 @@ module.exports = {
           default: require.resolve("./src/components/default-page-layout.js")
         }
       }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts/`
+      }
     }
   ]
 };
@@ -110,9 +119,12 @@ module.exports = {
 
 ### GraphQL
 
-MDX files can be queried with `allMdx` on the root query. Like `gatsby-transformer-remark`, this plugin adds fields to the Mdx node including `excerpt`, `headings`, `timeToRead`, and `wordCount`.
+MDX files can be queried with `allMdx` on the root query. Like
+`gatsby-transformer-remark`, this plugin adds fields to the Mdx node including
+`excerpt`, `headings`, `timeToRead`, and `wordCount`.
 
-All static exports – values that would be valid JSON – are queryable through the `exports` field.
+All static exports – values that would be valid JSON – are queryable through the
+`exports` field.
 
 ```graphql
 query MDXQuery {
@@ -139,9 +151,8 @@ query MDXQuery {
 
 ## Programmatically Creating Pages
 
-Pages can be created programmatically by combining
-`gatsby-source-filesystem` in `gatsby-config.js` with some
-`createPage` calls.
+Pages can be created programmatically by combining `gatsby-source-filesystem` in
+`gatsby-config.js` with some `createPage` calls.
 
 ```javascript
 # gatsby-config.js
@@ -204,9 +215,9 @@ exports.createPages = ({ graphql, actions }) => {
 
 ## Using Design System Components
 
-Using MDX, you can replace every HTML element that Markdown renders
-with a custom implementation. This allows you to use a set of design
-system components when rendering Markdown.
+Using MDX, you can replace every HTML element that Markdown renders with a
+custom implementation. This allows you to use a set of design system components
+when rendering Markdown.
 
 ```js
 // src/components/layout.js
@@ -234,7 +245,8 @@ export default function Layout({ children }) {
 
 ## Editable Code Blocks
 
-To make every markdown code block an editable live example, you can pass in a custom `code` element to MDXProvider.
+To make every markdown code block an editable live example, you can pass in a
+custom `code` element to MDXProvider.
 
 ![react-live](./img/react-live.png)
 
