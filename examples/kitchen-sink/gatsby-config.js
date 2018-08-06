@@ -32,6 +32,7 @@ module.exports = {
         path: `${__dirname}/decks/`
       }
     },
+    "gatsby-transformer-remark",
     `gatsby-plugin-offline`
   ]
 };
