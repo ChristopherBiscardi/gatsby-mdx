@@ -28,5 +28,9 @@
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build"
+  },
+  "devDependencies": {
+    "mdx-deck": "^1.5.7",
+    "styled-components": "^3.4.1"
   }
 }
