@@ -1,3 +1,6 @@
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
+const path = require("path");
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
@@ -8,8 +11,11 @@ exports.createPages = ({ graphql, actions }) => {
             allMdx {
               edges {
                 node {
+                  id
                   tableOfContents
                   fileAbsolutePath
+                  codeScope
+                  codeBody
                   fileNode {
                     name
                     sourceInstanceName
@@ -27,12 +33,18 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
+          console.log(node.codeScope);
           createPage({
             path: `/${node.fileNode.sourceInstanceName}/${node.fileNode.name}`,
-            component: node.fileAbsolutePath, //blogPost,
+            component: componentWithMDXScope(
+              path.resolve("./src/components/mdx-runtime-test.js"),
+              node.codeScope,
+              __dirname
+            ),
             context: {
               absPath: node.absolutePath,
-              tableOfContents: node.tableOfContents
+              tableOfContents: node.tableOfContents,
+              id: node.id
             }
           });
         });

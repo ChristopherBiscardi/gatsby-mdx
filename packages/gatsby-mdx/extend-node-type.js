@@ -17,6 +17,11 @@ const stripMarkdown = require("strip-markdown");
 const grayMatter = require("gray-matter");
 const { createMdxAstCompiler } = require("@mdx-js/mdx");
 const prune = require("underscore.string/prune");
+const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
+const mkdirp = require("mkdirp");
+
 const mdx = require("./utils/mdx");
 const getTableOfContents = require("./utils/get-table-of-content");
 const defaultOptions = require("./utils/default-options");
@@ -99,6 +104,56 @@ ${code}`;
         type: GraphQLString,
         resolve(markdownNode) {
           return getCode(markdownNode);
+        }
+      },
+      codeBody: {
+        type: GraphQLString,
+        resolve() {
+          // TODO: buble this
+          return `React.createElement( MDXTag, { name: "wrapper", components: components }, React.createElement( MDXTag, { name: "h1", components: components }, "Alpha"),
+React.createElement( MDXTag, { name: "h2", components: components }, "Table of Contents"),
+React.createElement( MDXTag, { name: "h2", components: components }, "Bravo"),
+React.createElement( MDXTag, { name: "h3", components: components }, "Charlie"),
+React.createElement( MDXTag, { name: "h2", components: components }, "Delta"))`;
+        }
+      },
+      codeScope: {
+        type: GraphQLString,
+        async resolve() {
+          const CACHE_DIR = `.cache`;
+          const PLUGIN_DIR = `gatsby-mdx`;
+          const REMOTE_MDX_DIR = `remote-mdx-dir`;
+          mkdirp.sync(
+            path.join(pluginOptions.root, CACHE_DIR, PLUGIN_DIR, REMOTE_MDX_DIR)
+          );
+          const createFilePath = (directory, filename, ext) =>
+            path.join(
+              directory,
+              CACHE_DIR,
+              PLUGIN_DIR,
+              REMOTE_MDX_DIR,
+              `${filename}${ext}`
+            );
+
+          const createHash = str =>
+            crypto
+              .createHash(`md5`)
+              .update(str)
+              .digest(`hex`);
+
+          const content = `import React from 'react'
+import { MDXTag } from '@mdx-js/tag'
+
+export default { React, MDXTag }`;
+
+          const filePath = createFilePath(
+            pluginOptions.root,
+            createHash(content),
+            ".js"
+          );
+
+          fs.writeFileSync(filePath, content);
+          return filePath;
         }
       },
       excerpt: {

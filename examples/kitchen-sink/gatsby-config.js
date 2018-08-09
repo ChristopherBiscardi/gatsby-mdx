@@ -11,6 +11,7 @@ module.exports = {
       options: {
         extensions: [".mdx", ".md"],
         decks: [path.resolve("./decks")],
+        root: __dirname,
         defaultLayouts: {
           posts: require.resolve("./src/components/default-post-layout.js"),
           default: require.resolve("./src/components/default-page-layout.js"),
