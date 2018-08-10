@@ -6,6 +6,7 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer";
 export default class MDXRuntimeTest extends Component {
   render() {
     const { children, __mdxScope, data } = this.props;
+    console.log(data);
     return (
       <div>
         <h1>Uses MDXRenderer</h1>
@@ -17,8 +18,8 @@ export default class MDXRuntimeTest extends Component {
 }
 
 export const pageQuery = graphql`
-  query MDXThing {
-    mdx(id: { eq: "e8215648-9479-5521-86f0-988e189139c7" }) {
+  query($id: String!) {
+    mdx(id: { eq: $id }) {
       id
       codeBody
     }

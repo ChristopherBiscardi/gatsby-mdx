@@ -2,10 +2,10 @@ const mkdirp = require("mkdirp");
 const fs = require("fs");
 const crypto = require("crypto");
 const path = require("path");
+const babel = require("@babel/core");
 
-// TODO hash the query name with the scope hash
-const query =
-  'export const pageQuery = graphql`query  { mdx(id: { eq: "e8215648-9479-5521-86f0-988e189139c7" }) { id codeBody } }`';
+const BabelPluginPluckExports = require("babel-plugin-pluck-exports");
+
 module.exports = function componentWithMDXScope(
   absWrapperPath,
   codeScopeAbsPath,
@@ -13,9 +13,13 @@ module.exports = function componentWithMDXScope(
 ) {
   mkdirp.sync(path.join(projectRoot, CACHE_DIR, PLUGIN_DIR, MDX_WRAPPERS_DIR));
 
-  // testing area for hoisting pageQuery
+  // hoist pageQuery and any other named exports
   const OGWrapper = fs.readFileSync(absWrapperPath, "utf-8");
-  console.log(OGWrapper);
+  const instance = new BabelPluginPluckExports();
+  const result = babel.transform(OGWrapper, {
+    plugins: [instance.plugin],
+    presets: [require("@babel/preset-react")]
+  }).code;
 
   // get the preexisting hash for the scope file to use in the new wrapper filename
   const scopePathSegments = codeScopeAbsPath.split("/");
@@ -24,14 +28,7 @@ module.exports = function componentWithMDXScope(
     -3
   );
 
-  const instance = new Plugin();
-  const OGWrapper = fs.readFileSync(absWrapperPath);
-  babel.transform(testContents, {
-    plugins: [instance.plugin],
-    presets: [require("@babel/preset-react")]
-  });
-
-  const newWrapper = `// .cache/gatsby-mdx/wrapper-components/{wrapper}-{scope-hash}.js
+  const newWrapper = `// .cache/gatsby-mdx/wrapper-components/{wrapper-filepath-hash}-{scope-hash}.js
   import React from 'react';
 
 import __mdxScope from '${codeScopeAbsPath}';
@@ -40,12 +37,16 @@ import OriginalWrapper from '${absWrapperPath}';
 
 import { graphql } from 'gatsby';
 
+// pageQuery, etc get hoisted to here
 ${instance.state.exports.map(exportString => exportString)};
-//  export { pageQuery };
 
-export default ({children, ...props}) => <OriginalWrapper {...props} __mdxScope={__mdxScope}>{children}</OriginalWrapper>`;
+export default ({children, ...props}) => <OriginalWrapper
+  {...props}
+  __mdxScope={__mdxScope}
+  >
+    {children}
+  </OriginalWrapper>`;
 
-  // TODO: second half of filename should be the scope hashed filename, not the hash of the path
   const absPathToNewWrapper = createFilePath(
     projectRoot,
     `${createHash(absWrapperPath)}--${scopeHash}`,

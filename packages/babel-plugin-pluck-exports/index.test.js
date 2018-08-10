@@ -21,7 +21,7 @@ describe("babel-plugin-pluck-exports", () => {
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });
-    console.log(result.code);
+
     expect(result.code).toEqual(`import React from "react";
 import { graphql } from "gatsby";
 export default (({

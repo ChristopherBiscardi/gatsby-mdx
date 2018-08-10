@@ -10,8 +10,6 @@ module.exports = class Plugin {
       api.assertVersion(7);
 
       return {
-        //    inherits: syntaxExportDefaultFrom,
-
         visitor: {
           ExportNamedDeclaration(path) {
             const { node, scope } = path;
