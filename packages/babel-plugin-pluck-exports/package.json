@@ -6,6 +6,9 @@
   "main": "index.js",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
     "@babel/preset-react": "^7.0.0-rc.1",
