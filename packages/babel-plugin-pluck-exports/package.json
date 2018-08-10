@@ -8,7 +8,6 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
-    "@babel/generator": "^7.0.0-rc.1",
     "@babel/preset-react": "^7.0.0-rc.1",
     "jest": "^23.4.2"
   },
