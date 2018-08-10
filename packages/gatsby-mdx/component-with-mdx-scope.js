@@ -13,25 +13,42 @@ module.exports = function componentWithMDXScope(
 ) {
   mkdirp.sync(path.join(projectRoot, CACHE_DIR, PLUGIN_DIR, MDX_WRAPPERS_DIR));
 
+  // testing area for hoisting pageQuery
+  const OGWrapper = fs.readFileSync(absWrapperPath, "utf-8");
+  console.log(OGWrapper);
+
+  // get the preexisting hash for the scope file to use in the new wrapper filename
+  const scopePathSegments = codeScopeAbsPath.split("/");
+  const scopeHash = scopePathSegments[scopePathSegments.length - 1].slice(
+    0,
+    -3
+  );
+
+  const instance = new Plugin();
+  const OGWrapper = fs.readFileSync(absWrapperPath);
+  babel.transform(testContents, {
+    plugins: [instance.plugin],
+    presets: [require("@babel/preset-react")]
+  });
+
   const newWrapper = `// .cache/gatsby-mdx/wrapper-components/{wrapper}-{scope-hash}.js
-import React from 'react';
+  import React from 'react';
 
 import __mdxScope from '${codeScopeAbsPath}';
-console.log(__mdxScope)
-  //const __mdxScope = {}
 
 import OriginalWrapper from '${absWrapperPath}';
 
 import { graphql } from 'gatsby';
 
-${query};
+${instance.state.exports.map(exportString => exportString)};
 //  export { pageQuery };
 
 export default ({children, ...props}) => <OriginalWrapper {...props} __mdxScope={__mdxScope}>{children}</OriginalWrapper>`;
 
+  // TODO: second half of filename should be the scope hashed filename, not the hash of the path
   const absPathToNewWrapper = createFilePath(
     projectRoot,
-    `${createHash(absWrapperPath)}--${createHash(codeScopeAbsPath)}`,
+    `${createHash(absWrapperPath)}--${scopeHash}`,
     ".js"
   );
 
