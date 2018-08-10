@@ -33,7 +33,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
-          console.log(node.codeScope);
           if (node.fileNode.sourceInstanceName === "slides") {
             createPage({
               path: `/${node.fileNode.sourceInstanceName}/${
@@ -67,6 +66,16 @@ exports.createPages = ({ graphql, actions }) => {
               }
             });
           }
+        });
+
+        createPage({
+          path: `/generated/multi-mdx`,
+          component: componentWithMDXScope(
+            path.resolve("./src/components/mdx-runtime-multi-test.js"),
+            result.data.allMdx.edges.map(({ node }) => node.codeScope),
+            __dirname
+          ),
+          context: {}
         });
       })
     );
