@@ -21,6 +21,11 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
+const BabelPluginPluckImports = require("babel-plugin-pluck-imports");
+const objRestSpread = require("@babel/plugin-proposal-object-rest-spread");
+const babel = require("@babel/core");
+const rawMDX = require("@mdx-js/mdx");
+const syntaxJSX = require("@babel/plugin-syntax-jsx");
 
 const mdx = require("./utils/mdx");
 const getTableOfContents = require("./utils/get-table-of-content");
@@ -61,8 +66,11 @@ module.exports = (
       return remark().stringify(textAst);
     }
 
-    async function getCode(mdxNode) {
-      const code = await mdx(mdxNode.rawBody, options);
+    async function getCode(mdxNode, overrideOptions) {
+      const code = await mdx(mdxNode.rawBody, {
+        ...options,
+        ...overrideOptions
+      });
 
       return `import React from 'react'
 import { MDXTag } from '@mdx-js/tag'
@@ -108,18 +116,27 @@ ${code}`;
       },
       codeBody: {
         type: GraphQLString,
-        resolve() {
-          // TODO: buble this
-          return `React.createElement( MDXTag, { name: "wrapper", components: components }, React.createElement( MDXTag, { name: "h1", components: components }, "Alpha"),
-React.createElement( MDXTag, { name: "h2", components: components }, "Table of Contents"),
-React.createElement( MDXTag, { name: "h2", components: components }, "Bravo"),
-React.createElement( MDXTag, { name: "h3", components: components }, "Charlie"),
-React.createElement( MDXTag, { name: "h2", components: components }, "Delta"))`;
+        async resolve(mdxNode) {
+          const { data, content } = grayMatter(mdxNode.rawBody);
+          let code = await rawMDX(content, {
+            ...options
+          });
+
+          const instance = new BabelPluginPluckImports();
+          const result = babel.transform(code, {
+            plugins: [instance.plugin, objRestSpread],
+            presets: [require("@babel/preset-react")]
+          });
+
+          // TODO: be more sophisticated about these replacements
+          return result.code
+            .replace("export default", "return")
+            .replace(/\nexport /g, "\n");
         }
       },
       codeScope: {
         type: GraphQLString,
-        async resolve() {
+        async resolve(mdxNode) {
           const CACHE_DIR = `.cache`;
           const PLUGIN_DIR = `gatsby-mdx`;
           const REMOTE_MDX_DIR = `remote-mdx-dir`;
@@ -141,18 +158,38 @@ React.createElement( MDXTag, { name: "h2", components: components }, "Delta"))`;
               .update(str)
               .digest(`hex`);
 
-          const content = `import React from 'react'
-import { MDXTag } from '@mdx-js/tag'
+          const { data, content } = grayMatter(mdxNode.rawBody);
+          let code = await rawMDX(content, {
+            ...options
+          });
 
-export default { React, MDXTag }`;
+          const instance = new BabelPluginPluckImports();
+          const result = babel.transform(code, {
+            plugins: [instance.plugin, objRestSpread],
+            presets: [require("@babel/preset-react")]
+          });
 
+          const identifiers = Array.from(instance.state.identifiers);
+          const imports = Array.from(instance.state.imports);
+          if (!identifiers.includes("React")) {
+            identifiers.push("React");
+            imports.push("import React from 'react'");
+          }
+          if (!identifiers.includes("MDXTag")) {
+            identifiers.push("MDXTag");
+            imports.push("import { MDXTag } from '@mdx-js/tag'");
+          }
+          const scopeFileContent = `${imports.join("\n")}
+
+export default { ${identifiers.join(", ")} }`;
+          console.log(scopeFileContent);
           const filePath = createFilePath(
             pluginOptions.root,
-            createHash(content),
+            createHash(scopeFileContent),
             ".js"
           );
 
-          fs.writeFileSync(filePath, content);
+          fs.writeFileSync(filePath, scopeFileContent);
           return filePath;
         }
       },

@@ -34,21 +34,49 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           console.log(node.codeScope);
-          createPage({
-            path: `/${node.fileNode.sourceInstanceName}/${node.fileNode.name}`,
-            component: componentWithMDXScope(
-              path.resolve("./src/components/mdx-runtime-test.js"),
-              node.codeScope,
-              __dirname
-            ),
-            context: {
-              absPath: node.absolutePath,
-              tableOfContents: node.tableOfContents,
-              id: node.id
-            }
-          });
+          if (node.fileNode.sourceInstanceName === "slides") {
+            createPage({
+              path: `/${node.fileNode.sourceInstanceName}/${
+                node.fileNode.name
+              }`,
+              component: componentWithMDXScope(
+                path.resolve("./src/components/mdx-runtime-slides-test.js"),
+                node.codeScope,
+                __dirname
+              ),
+              context: {
+                absPath: node.absolutePath,
+                tableOfContents: node.tableOfContents,
+                id: node.id
+              }
+            });
+          } else {
+            createPage({
+              path: `/${node.fileNode.sourceInstanceName}/${
+                node.fileNode.name
+              }`,
+              component: componentWithMDXScope(
+                path.resolve("./src/components/mdx-runtime-test.js"),
+                node.codeScope,
+                __dirname
+              ),
+              context: {
+                absPath: node.absolutePath,
+                tableOfContents: node.tableOfContents,
+                id: node.id
+              }
+            });
+          }
         });
       })
     );
+  });
+};
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"]
+    }
   });
 };

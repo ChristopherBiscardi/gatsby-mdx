@@ -5,10 +5,13 @@ export default ({ scope = {}, components = {}, children, ...props }) => {
     ...scope
   };
 
+  console.log(fullScope, children);
   // children is pre-compiled mdx
   const keys = Object.keys(fullScope);
   const values = keys.map(key => fullScope[key]);
-  const fn = new Function("_fn", ...keys, `return ${children}`);
+  const fn = new Function("_fn", ...keys, `${children}`);
 
-  return fn({}, ...values);
+  const end = fn({}, ...values)({ components, ...props });
+  console.log("end", end);
+  return end;
 };
