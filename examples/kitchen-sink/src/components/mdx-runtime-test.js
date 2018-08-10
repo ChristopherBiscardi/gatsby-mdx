@@ -5,12 +5,14 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer";
 
 export default class MDXRuntimeTest extends Component {
   render() {
-    const { children, __mdxScope, data } = this.props;
+    const { children, __mdxScope, data, ...props } = this.props;
     return (
       <div>
         <h1>Uses MDXRenderer</h1>
         <div>{children}</div>
-        <MDXRenderer scope={__mdxScope}>{data.mdx.codeBody}</MDXRenderer>
+        <MDXRenderer {...props} scope={__mdxScope}>
+          {data.mdx.codeBody}
+        </MDXRenderer>
       </div>
     );
   }

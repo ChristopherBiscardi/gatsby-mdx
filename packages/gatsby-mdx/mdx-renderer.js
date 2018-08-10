@@ -12,6 +12,5 @@ export default ({ scope = {}, components = {}, children, ...props }) => {
   const fn = new Function("_fn", ...keys, `${children}`);
 
   const end = fn({}, ...values)({ components, ...props });
-  console.log("end", end);
   return end;
 };
