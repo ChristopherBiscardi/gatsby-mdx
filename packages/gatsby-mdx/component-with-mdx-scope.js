@@ -60,9 +60,13 @@ export default ({children, ...props}) => <OriginalWrapper
     {children}
   </OriginalWrapper>`;
 
+  const hashName =
+    scopeHashes.length > 1
+      ? `scope-hashes-${createHash(scopeHashes.sort().join("-"))}`
+      : `scope-hash-${scopeHashes.sort().join("-")}`;
   const absPathToNewWrapper = createFilePath(
     projectRoot,
-    `${createHash(absWrapperPath)}--${scopeHashes.sort().join("-")}`,
+    `${createHash(absWrapperPath)}--${hashName}`,
     ".js"
   );
 
