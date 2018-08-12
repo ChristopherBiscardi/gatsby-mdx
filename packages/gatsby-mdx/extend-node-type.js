@@ -182,7 +182,7 @@ ${code}`;
           const scopeFileContent = `${imports.join("\n")}
 
 export default { ${identifiers.join(", ")} }`;
-          console.log(scopeFileContent);
+
           const filePath = createFilePath(
             pluginOptions.root,
             createHash(scopeFileContent),

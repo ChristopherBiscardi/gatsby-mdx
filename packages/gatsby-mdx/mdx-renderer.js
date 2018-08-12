@@ -5,7 +5,6 @@ export default ({ scope = {}, components = {}, children, ...props }) => {
     ...scope
   };
 
-  console.log(fullScope, children);
   // children is pre-compiled mdx
   const keys = Object.keys(fullScope);
   const values = keys.map(key => fullScope[key]);
