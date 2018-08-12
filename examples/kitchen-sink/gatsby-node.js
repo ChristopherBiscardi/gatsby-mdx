@@ -38,14 +38,13 @@ exports.createPages = ({ graphql, actions }) => {
               path: `/${node.fileNode.sourceInstanceName}/${
                 node.fileNode.name
               }`,
-              component: componentWithMDXScope(
-                path.resolve("./src/components/mdx-runtime-slides-test.js"),
-                node.codeScope,
-                __dirname
-              ),
+              component:
+                node.fileAbsolutePath /* componentWithMDXScope(
+                            path.resolve("./src/components/mdx-runtime-slides-test.js"),
+                            node.codeScope,
+                            __dirname
+                            ), */,
               context: {
-                absPath: node.absolutePath,
-                tableOfContents: node.tableOfContents,
                 id: node.id
               }
             });
@@ -68,6 +67,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         });
 
+        // manually create a page with a lot of mdx
         createPage({
           path: `/generated/multi-mdx`,
           component: componentWithMDXScope(
