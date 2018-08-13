@@ -1,15 +1,19 @@
-export default ({ scope = {}, components = {}, children, ...props }) => {
-  const fullScope = {
-    components,
-    props,
-    ...scope
-  };
+import { withMDXComponents } from "@mdx-js/tag/dist/mdx-provider";
 
-  // children is pre-compiled mdx
-  const keys = Object.keys(fullScope);
-  const values = keys.map(key => fullScope[key]);
-  const fn = new Function("_fn", ...keys, `${children}`);
+export default withMDXComponents(
+  ({ scope = {}, components = {}, children, ...props }) => {
+    const fullScope = {
+      components,
+      props,
+      ...scope
+    };
 
-  const end = fn({}, ...values)({ components, ...props });
-  return end;
-};
+    // children is pre-compiled mdx
+    const keys = Object.keys(fullScope);
+    const values = keys.map(key => fullScope[key]);
+    const fn = new Function("_fn", ...keys, `${children}`);
+
+    const end = fn({}, ...values)({ components, ...props });
+    return end;
+  }
+);
