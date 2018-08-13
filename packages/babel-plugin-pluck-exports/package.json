@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-pluck-exports",
-  "version": "0.0.1",
+  "version": "0.0.1-dev",
   "description":
     "Babel plugin to find and remove exports from a file and return them",
   "main": "index.js",
