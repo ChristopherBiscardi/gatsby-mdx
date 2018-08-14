@@ -14,8 +14,9 @@ exports.createPages = ({ graphql, actions }) => {
                   id
                   tableOfContents
                   fileAbsolutePath
-                  codeScope
-                  codeBody
+                  code {
+                    scope
+                  }
                   fileNode {
                     name
                     sourceInstanceName
@@ -55,7 +56,7 @@ exports.createPages = ({ graphql, actions }) => {
               }`,
               component: componentWithMDXScope(
                 path.resolve("./src/components/mdx-runtime-test.js"),
-                node.codeScope,
+                node.code.scope,
                 __dirname
               ),
               context: {
@@ -72,7 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
           path: `/generated/multi-mdx`,
           component: componentWithMDXScope(
             path.resolve("./src/components/mdx-runtime-multi-test.js"),
-            result.data.allMdx.edges.map(({ node }) => node.codeScope),
+            result.data.allMdx.edges.map(({ node }) => node.code.scope),
             __dirname
           ),
           context: {}

@@ -23,7 +23,7 @@ export default class MDXRuntimeMultiTest extends Component {
                 pageContext={{ tableOfContents: node.tableOfContents }}
                 scope={__mdxScope}
               >
-                {node.codeBody}
+                {node.code.body}
               </MDXRenderer>
             </div>
           ))}
@@ -39,7 +39,9 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          codeBody
+          code {
+            body
+          }
           tableOfContents
         }
       }
