@@ -1,3 +1,6 @@
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
+const path = require("path");
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
@@ -8,8 +11,11 @@ exports.createPages = ({ graphql, actions }) => {
             allMdx {
               edges {
                 node {
+                  id
                   tableOfContents
                   fileAbsolutePath
+                  codeScope
+                  codeBody
                   fileNode {
                     name
                     sourceInstanceName
@@ -27,16 +33,59 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
-          createPage({
-            path: `/${node.fileNode.sourceInstanceName}/${node.fileNode.name}`,
-            component: node.fileAbsolutePath, //blogPost,
-            context: {
-              absPath: node.absolutePath,
-              tableOfContents: node.tableOfContents
-            }
-          });
+          if (node.fileNode.sourceInstanceName === "slides") {
+            createPage({
+              path: `/${node.fileNode.sourceInstanceName}/${
+                node.fileNode.name
+              }`,
+              component:
+                node.fileAbsolutePath /* componentWithMDXScope(
+                            path.resolve("./src/components/mdx-runtime-slides-test.js"),
+                            node.codeScope,
+                            __dirname
+                            ), */,
+              context: {
+                id: node.id
+              }
+            });
+          } else {
+            createPage({
+              path: `/${node.fileNode.sourceInstanceName}/${
+                node.fileNode.name
+              }`,
+              component: componentWithMDXScope(
+                path.resolve("./src/components/mdx-runtime-test.js"),
+                node.codeScope,
+                __dirname
+              ),
+              context: {
+                absPath: node.absolutePath,
+                tableOfContents: node.tableOfContents,
+                id: node.id
+              }
+            });
+          }
+        });
+
+        // manually create a page with a lot of mdx
+        createPage({
+          path: `/generated/multi-mdx`,
+          component: componentWithMDXScope(
+            path.resolve("./src/components/mdx-runtime-multi-test.js"),
+            result.data.allMdx.edges.map(({ node }) => node.codeScope),
+            __dirname
+          ),
+          context: {}
         });
       })
     );
+  });
+};
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"]
+    }
   });
 };

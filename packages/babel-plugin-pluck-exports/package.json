@@ -1,0 +1,20 @@
+{
+  "name": "babel-plugin-pluck-exports",
+  "version": "0.0.1",
+  "description":
+    "Babel plugin to find and remove exports from a file and return them",
+  "main": "index.js",
+  "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "jest": "^23.4.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
