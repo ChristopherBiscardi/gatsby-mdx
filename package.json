@@ -1,0 +1,28 @@
+{
+  "name": "cf-contentful-mdx-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html --https",
+    "build": "parcel build index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ui:create": "contentful extension create --space-id ${SPACE_ID}",
+    "ui:update": "contentful extension update --space-id ${SPACE_ID} --force"
+  },
+  "keywords": [],
+  "author": "stefan judis <stefanjudis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@mdx-js/mdx": "^0.15.0",
+    "@mdx-js/tag": "^0.15.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-sandpack": "^1.0.0",
+    "react-smooshpack": "0.0.44"
+  },
+  "devDependencies": {
+    "contentful-cli": "^0.16.1",
+    "parcel-bundler": "^1.9.7"
+  }
+}

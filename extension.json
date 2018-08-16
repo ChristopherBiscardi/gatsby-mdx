@@ -1,0 +1,15 @@
+{
+  "name": "MDX preview",
+  "id": "mdx-preview",
+  "fieldTypes": ["Text"],
+  "src": "https://localhost:1234",
+  "parameters": {
+    "instance": [{
+      "id": "dependencies",
+      "type": "Symbol",
+      "name": "dependencies that should be resolved",
+      "description": "comma separated list of dependencies (for now always latest will be fetched)",
+      "default": ""
+    }]
+  }
+}
