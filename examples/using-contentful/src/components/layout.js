@@ -1,3 +1,4 @@
+/* global __PATH_PREFIX__ */
 import React from 'react'
 import { Link } from 'gatsby'
 

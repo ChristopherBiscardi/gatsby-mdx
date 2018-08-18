@@ -34,7 +34,7 @@ export const pageQuery = graphql\`
 
   test("yields list of imports", () => {
     const instance = new Plugin();
-    const result = babel.transform(testContents, {
+    babel.transform(testContents, {
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });
@@ -46,7 +46,7 @@ export const pageQuery = graphql\`
   });
   test("yields list of local identifiers", () => {
     const instance = new Plugin();
-    const result = babel.transform(testContents, {
+    babel.transform(testContents, {
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });

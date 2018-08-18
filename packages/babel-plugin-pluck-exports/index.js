@@ -1,5 +1,4 @@
 const declare = require("@babel/helper-plugin-utils").declare;
-const t = require("@babel/core").types;
 
 module.exports = class Plugin {
   constructor() {
@@ -11,7 +10,6 @@ module.exports = class Plugin {
       return {
         visitor: {
           ExportNamedDeclaration(path) {
-            const { node, scope } = path;
             const name = path.get("declaration.declarations.0").node.id.name;
 
             // TODO: make this check an option to the babel plugin if we need to

@@ -1,5 +1,4 @@
 const declare = require("@babel/helper-plugin-utils").declare;
-const t = require("@babel/core").types;
 
 module.exports = class Plugin {
   constructor() {
@@ -12,8 +11,6 @@ module.exports = class Plugin {
       return {
         visitor: {
           ImportDeclaration(path) {
-            const { node, scope } = path;
-
             path.traverse({
               Identifier(path) {
                 // only take local bindings

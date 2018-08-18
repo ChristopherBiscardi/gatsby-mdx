@@ -6,10 +6,7 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer";
 
 export default class MDXRuntimeTest extends Component {
   render() {
-    const { children, __mdxScope, data } = this.props;
-    console.log(
-      <MDXRenderer scope={__mdxScope}>{data.mdx.code.body}</MDXRenderer>
-    );
+    const { __mdxScope, data } = this.props;
     return (
       <SlideDeck
         slides={

@@ -57,7 +57,8 @@ const IndexPage = ({ data }) => (
           margin-bottom: 0.5em;
         `}
       >
-        Hello World, this is my first component styled with{` `}
+        Hello World, this is my first component styled with
+        {` `}
         <a
           className={css`
             color: #8be9fd;
@@ -65,7 +66,8 @@ const IndexPage = ({ data }) => (
           href="https://emotion.sh/"
         >
           emotion
-        </a>!
+        </a>
+        !
       </h1>
       <p
         className={css`
@@ -94,7 +96,7 @@ const IndexPage = ({ data }) => (
         `}
       >
         {data.allSitePage.edges.map(({ node }) => (
-          <li>
+          <li key={node.id}>
             <Link
               className={css`
                 color: #8be9fd;
@@ -120,6 +122,7 @@ export const pageQuery = graphql`
       }
       edges {
         node {
+          id
           path
         }
       }

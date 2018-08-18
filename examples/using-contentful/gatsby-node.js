@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
+          console.log(result.errors) // eslint-disable-line no-console
           reject(result.errors)
         }
 
@@ -92,8 +92,8 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
-  const { createNodeField, createParentChildLink, createNode } = actions
+exports.onCreateNode = async ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode })

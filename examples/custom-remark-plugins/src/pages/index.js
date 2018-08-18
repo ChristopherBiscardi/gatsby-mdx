@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Helmet from "react-helmet";
 import { injectGlobal } from "emotion";
-import styled, { css } from "react-emotion";
+import styled from "react-emotion";
 import { graphql, Link } from "gatsby";
 
 injectGlobal`
@@ -57,7 +57,8 @@ const IndexPage = ({ data }) => (
           margin-bottom: 0.5em;
         `}
       >
-        Hello World, this is my first component styled with{` `}
+        Hello World, this is my first component styled with
+        {` `}
         <a
           css={`
             color: #8be9fd;
@@ -65,7 +66,8 @@ const IndexPage = ({ data }) => (
           href="https://emotion.sh/"
         >
           emotion
-        </a>!
+        </a>
+        !
       </h1>
       <p
         css={`
@@ -94,7 +96,7 @@ const IndexPage = ({ data }) => (
         `}
       >
         {data.allSitePage.edges.map(({ node }) => (
-          <li>
+          <li key={node.id}>
             <Link
               css={`
                 color: #8be9fd;
@@ -120,6 +122,7 @@ export const pageQuery = graphql`
       }
       edges {
         node {
+          id
           path
         }
       }
