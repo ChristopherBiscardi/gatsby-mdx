@@ -1,0 +1,13 @@
+---
+title: A title from frontmatter
+---
+
+export default ({children, pageContext, ...props}) => (
+  <div className="my custom layout">
+    <h1>{pageContext.frontmatter.title}</h1>
+    <div>{children}</div>
+  </div>
+)
+
+
+Some content
