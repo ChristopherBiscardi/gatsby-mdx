@@ -1,8 +1,7 @@
 {
   "name": "custom-remark-plugins",
   "private": true,
-  "description":
-    "Gatsby example site using custom remark plugins. For PRs and testing",
+  "description": "Gatsby example site using custom remark plugins. For PRs and testing",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "version": "0.0.1",
   "dependencies": {
@@ -27,5 +26,10 @@
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build"
+  },
+  "devDependencies": {
+    "gatsby-remark-katex": "^1.0.14",
+    "gatsby-remark-prismjs": "^2.0.5",
+    "prismjs": "^1.15.0"
   }
 }

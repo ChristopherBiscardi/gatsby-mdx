@@ -14,6 +14,7 @@ const toMDAST = require("remark-parse");
 const squeeze = require("remark-squeeze-paragraphs");
 
 const mdx = require("./utils/mdx");
+const getSourcePluginsAsRemarkPlugins = require("./utils/get-source-plugins-as-remark-plugins");
 const debug = require("debug")("gatsby-mdx:mdx-loader");
 
 const DEFAULT_OPTIONS = {
@@ -78,7 +79,14 @@ const hasDefaultExport = (str, options) => {
 
 module.exports = async function(content) {
   const callback = this.async();
-  const { getNodes, pluginOptions } = getOptions(this);
+  const {
+    getNode,
+    getNodes,
+    reporter,
+    cache,
+    pathPrefix,
+    pluginOptions
+  } = getOptions(this);
 
   const fileNode = getNodes().find(
     node =>
@@ -110,8 +118,24 @@ export default DefaultLayout
 ${contentWithoutFrontmatter}`;
   }
 
-  code = await mdx(code, pluginOptions);
+  debug("pre-plugins");
+  const gatsbyRemarkPluginsAsMDPlugins = await getSourcePluginsAsRemarkPlugins({
+    gatsbyRemarkPlugins: pluginOptions.gatsbyRemarkPlugins,
+    markdownNode: undefined,
+    //          files,
+    getNode,
+    getNodes,
+    reporter,
+    cache,
+    pathPrefix
+  });
 
+  code = await mdx(code, {
+    ...pluginOptions,
+    mdPlugins: pluginOptions.mdPlugins.concat(gatsbyRemarkPluginsAsMDPlugins)
+  });
+
+  debug("code", code);
   return callback(
     null,
     `import React from 'react'
