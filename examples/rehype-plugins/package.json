@@ -1,0 +1,28 @@
+{
+  "name": "rehype-plugins",
+  "description": "gatsby-mdx with rehype plugins",
+  "version": "1.0.0",
+  "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "dependencies": {
+    "gatsby": "next",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "react-helmet": "^5.2.0"
+  },
+  "keywords": ["gatsby"],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@mapbox/rehype-prism": "^0.2.0",
+    "gatsby-mdx": "^0.0.11",
+    "prettier": "^1.13.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  }
+}

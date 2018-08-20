@@ -881,6 +881,14 @@
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.1.tgz#f3a81587ad8d0ef33cdad6f3b4310774fcc1053e"
 
+"@mapbox/rehype-prism@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/rehype-prism/-/rehype-prism-0.2.0.tgz#c3e6a241487715cfc2d277975c672a0727c5f726"
+  dependencies:
+    hast-util-to-string "^1.0.0"
+    refractor "^2.3.0"
+    unist-util-visit "^1.1.3"
+
 "@mdx-js/loader@^0.15.0-2":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-0.15.0.tgz#05a36267d5a491ae1981508a3e662eaf848f6ad3"
@@ -5761,6 +5769,12 @@ gatsby-plugin-page-creator@^2.0.0-beta.5:
     parse-filepath "^1.0.1"
     slash "^1.0.0"
 
+gatsby-plugin-react-helmet@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-2.0.11.tgz#a2db81755f5b41d54e0e535ca1d9a008d3ccff0a"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-react-helmet@next:
   version "3.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.0-beta.4.tgz#065bb67fec37e86db536c51d7a5006eee2ce89b9"
@@ -6697,6 +6711,10 @@ hast-util-to-parse5@^2.0.0:
     web-namespaces "^1.0.0"
     xtend "^4.0.1"
     zwitch "^1.0.0"
+
+hast-util-to-string@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-to-string/-/hast-util-to-string-1.0.1.tgz#b28055cdca012d3c8fd048757c8483d0de0d002c"
 
 hast-util-whitespace@^1.0.0:
   version "1.0.1"
@@ -9138,6 +9156,8 @@ mini-css-extract-plugin@^0.4.0:
 mini-html-webpack-plugin@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/mini-html-webpack-plugin/-/mini-html-webpack-plugin-0.2.3.tgz#2dfbdc3f35f6ae03864a608808381f8137311ea0"
+  dependencies:
+    webpack-sources "^1.1.0"
 
 mini-svg-data-uri@^1.0.0:
   version "1.0.1"
@@ -11132,7 +11152,7 @@ redux@^3.6.0:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
 
-refractor@^2.4.1:
+refractor@^2.3.0, refractor@^2.4.1:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/refractor/-/refractor-2.6.0.tgz#6b0d88f654c8534eefed3329a35bc7bb74ae0979"
   dependencies:
@@ -13213,7 +13233,7 @@ unist-util-visit-parents@^2.0.0, unist-util-visit-parents@^2.0.1:
   dependencies:
     unist-util-is "^2.1.2"
 
-unist-util-visit@^1.0.0, unist-util-visit@^1.1.0, unist-util-visit@^1.3.0, unist-util-visit@^1.4.0:
+unist-util-visit@^1.0.0, unist-util-visit@^1.1.0, unist-util-visit@^1.1.3, unist-util-visit@^1.3.0, unist-util-visit@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.4.0.tgz#1cb763647186dc26f5e1df5db6bd1e48b3cc2fb1"
   dependencies:
