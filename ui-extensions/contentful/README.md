@@ -2,6 +2,8 @@
 
 Edit and preview MDX content fields inside of the Contentful UI
 
+Deployed at https://mdx-contentful-ui-extension.netlify.com/
+
 ## Development Installation and Usage
 
 - $ npm run create (after that you should have a ui-extension in your contentful space)
