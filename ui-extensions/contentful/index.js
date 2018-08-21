@@ -1,11 +1,9 @@
+/* eslint-env browser */
+
 import React, { Component } from "react";
 import { render } from "react-dom";
 import mdx from "@mdx-js/mdx";
-import { MDXTag } from "@mdx-js/tag";
-
 import {
-  FileExplorer,
-  CodeMirror,
   BrowserPreview,
   SandpackProvider
 } from "react-smooshpack/es/components";
@@ -40,7 +38,6 @@ class App extends Component {
       )
     );
     delete deps[""];
-    console.log("dyn-deps", deps);
 
     this.state = {
       mdxContent: mdxContent,
@@ -114,7 +111,6 @@ class App extends Component {
 }
 
 window.contentfulExtension.init(({ field, window, parameters }) => {
-  console.log(field, parameters);
   const { instance } = parameters;
   const { dependencies: deps } = instance;
 
