@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { MDXProvider } from "@mdx-js/tag";
 
 export default class DefaultPageLayout extends Component {
   render() {

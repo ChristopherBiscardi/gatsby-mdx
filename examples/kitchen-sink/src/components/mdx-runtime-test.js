@@ -12,7 +12,8 @@ export default class MDXRuntimeTest extends Component {
         components={{
           h1: ({ children, ...props }) => (
             <h1 {...props}>Provided: {children}</h1>
-          )
+          ),
+          wrapper: "article"
         }}
       >
         <div>
