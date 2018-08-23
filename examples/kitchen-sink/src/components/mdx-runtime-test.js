@@ -6,7 +6,8 @@ import { MDXProvider } from "@mdx-js/tag";
 
 export default class MDXRuntimeTest extends Component {
   render() {
-    const { children, __mdxScope, data, ...props } = this.props;
+    const { children, data, ...props } = this.props;
+
     return (
       <MDXProvider
         components={{
@@ -19,9 +20,7 @@ export default class MDXRuntimeTest extends Component {
         <div>
           <h1>Uses MDXRenderer</h1>
           <div>{children}</div>
-          <MDXRenderer {...props} scope={__mdxScope}>
-            {data.mdx.code.body}
-          </MDXRenderer>
+          <MDXRenderer {...props}>{data.mdx.code.body}</MDXRenderer>
         </div>
       </MDXProvider>
     );
