@@ -12,6 +12,6 @@ export const onInitialClientRender = () => {
   }
 };
 
-export const wrapRootElement = ({ element }, options) => {
+export const wrapRootElement = ({ element } /*, options*/) => {
   return <Wrapper>{element}</Wrapper>;
 };

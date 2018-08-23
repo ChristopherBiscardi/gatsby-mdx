@@ -3,9 +3,9 @@ import { renderToString } from "react-dom/server";
 import { extractCritical } from "emotion-server";
 import Wrapper from "./root-wrapper";
 
-const emotionSSR = { html: undefined, css: undefined, ids: undefined };
+let emotionSSR = { html: undefined, css: undefined, ids: undefined };
 
-export const wrapRootElement = ({ element }, options) => {
+export const wrapRootElement = ({ element } /*, options*/) => {
   const Body = <Wrapper>{element}</Wrapper>;
 
   emotionSSR = extractCritical(renderToString(<Body />));
