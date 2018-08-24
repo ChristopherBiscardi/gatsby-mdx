@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Helmet from "react-helmet";
 import { injectGlobal } from "emotion";
 import styled, { css } from "react-emotion";
+import { graphql } from "gatsby";
 
 injectGlobal`
   * {
@@ -36,48 +37,72 @@ const Wrapper = styled.section`
   background: #282a36;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 60vh;
   justify-content: center;
   width: 100vw;
 `;
 
-const IndexPage = () => (
-  <Fragment>
-    <Helmet>
-      <title>Gatsby MDX</title>
-      <meta name="description" content="gatsby-mdx documentation" />
-      <meta name="referrer" content="origin" />
-    </Helmet>
-    <Wrapper>
-      <h1
-        css={`
-          font-size: 1.5em;
-          color: #ff79c6;
-          margin-bottom: 0.5em;
+const IndexPage = ({ data }) =>
+  console.log(data) || (
+    <Fragment>
+      <Helmet>
+        <title>Gatsby MDX</title>
+        <meta name="description" content="gatsby-mdx documentation" />
+        <meta name="referrer" content="origin" />
+      </Helmet>
+      <Wrapper>
+        <h1
+          css={`
+            font-size: 1.5em;
+            color: #ff79c6;
+            margin-bottom: 0.5em;
 
-          a {
-            color: #8be9fd;
-          }
-        `}
-      >
-        Gatsby MDX
-      </h1>
-      <p
-        css={`
-          color: #bd93f9;
-        `}
-      >
-        <a
-          href="https://github.com/mdx-js/mdx"
-          css={css`
-            color: inherit;
+            a {
+              color: #8be9fd;
+            }
           `}
         >
-          mdx docs
-        </a>
-      </p>
-    </Wrapper>
-  </Fragment>
-);
+          Gatsby MDX
+        </h1>
+        <p
+          css={`
+            color: #bd93f9;
+          `}
+        >
+          <a
+            href="https://github.com/mdx-js/mdx"
+            css={css`
+              color: inherit;
+            `}
+          >
+            mdx docs
+          </a>
+        </p>
+      </Wrapper>
+      <div>
+        <ul>
+          {data.allMdx.edges.map(({ node }) => (
+            <li key={node.id}>
+              <a href={`/${node.fields.slug}`}>{node.fields.slug}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Fragment>
+  );
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  {
+    allMdx {
+      edges {
+        node {
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
