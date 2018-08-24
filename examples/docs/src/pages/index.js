@@ -42,54 +42,53 @@ const Wrapper = styled.section`
   width: 100vw;
 `;
 
-const IndexPage = ({ data }) =>
-  console.log(data) || (
-    <Fragment>
-      <Helmet>
-        <title>Gatsby MDX</title>
-        <meta name="description" content="gatsby-mdx documentation" />
-        <meta name="referrer" content="origin" />
-      </Helmet>
-      <Wrapper>
-        <h1
-          css={`
-            font-size: 1.5em;
-            color: #ff79c6;
-            margin-bottom: 0.5em;
+const IndexPage = ({ data }) => (
+  <Fragment>
+    <Helmet>
+      <title>Gatsby MDX</title>
+      <meta name="description" content="gatsby-mdx documentation" />
+      <meta name="referrer" content="origin" />
+    </Helmet>
+    <Wrapper>
+      <h1
+        css={`
+          font-size: 1.5em;
+          color: #ff79c6;
+          margin-bottom: 0.5em;
 
-            a {
-              color: #8be9fd;
-            }
+          a {
+            color: #8be9fd;
+          }
+        `}
+      >
+        Gatsby MDX
+      </h1>
+      <p
+        css={`
+          color: #bd93f9;
+        `}
+      >
+        <a
+          href="https://github.com/mdx-js/mdx"
+          css={css`
+            color: inherit;
           `}
         >
-          Gatsby MDX
-        </h1>
-        <p
-          css={`
-            color: #bd93f9;
-          `}
-        >
-          <a
-            href="https://github.com/mdx-js/mdx"
-            css={css`
-              color: inherit;
-            `}
-          >
-            mdx docs
-          </a>
-        </p>
-      </Wrapper>
-      <div>
-        <ul>
-          {data.allMdx.edges.map(({ node }) => (
-            <li key={node.id}>
-              <a href={`/${node.fields.slug}`}>{node.fields.slug}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Fragment>
-  );
+          mdx docs
+        </a>
+      </p>
+    </Wrapper>
+    <div>
+      <ul>
+        {data.allMdx.edges.map(({ node }) => (
+          <li key={node.id}>
+            <a href={`/${node.fields.slug}`}>{node.fields.slug}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Fragment>
+);
 
 export default IndexPage;
 
