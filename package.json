@@ -8,7 +8,6 @@
   "workspaces": ["examples/*", "packages/*", "ui-extensions/*"],
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "yarn lint",
     "lint": "eslint ."
   },
   "lint-staged": {
