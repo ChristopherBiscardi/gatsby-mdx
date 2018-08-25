@@ -60,13 +60,11 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateNode = async ({ node, actions, getNode }) => {
+exports.onCreateNode = async ({ node, actions }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
     const value = node.fileNode.relativePath.replace(node.fileNode.ext, "");
-    console.log("val", value);
-    console.log(value);
     createNodeField({
       name: `slug`,
       node,

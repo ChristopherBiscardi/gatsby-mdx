@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 
@@ -6,7 +7,7 @@ import { MDXProvider } from "@mdx-js/tag";
 
 import Highlight, { defaultProps } from "prism-react-renderer";
 
-const CodeBlock = ({ children: exampleCode, ...props }) => (
+const CodeBlock = ({ children: exampleCode }) => (
   <Highlight {...defaultProps} code={exampleCode} language="jsx">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre className={className} style={style}>
@@ -24,7 +25,7 @@ const CodeBlock = ({ children: exampleCode, ...props }) => (
 
 export default class MDXRuntimeTest extends Component {
   render() {
-    const { children, data, tableOfContents, ...props } = this.props;
+    const { children, data, tableOfContents } = this.props;
 
     return (
       <MDXProvider
