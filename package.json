@@ -5,7 +5,7 @@
   "description": "mdx integrations and examples for gatsby",
   "main": "index.js",
   "license": "MIT",
-  "workspaces": ["examples/*", "packages/*", "ui-extensions/*"],
+  "workspaces": ["examples/*", "packages/*", "ui-extensions/*", "components/*"],
   "scripts": {
     "precommit": "lint-staged",
     "prepublish": "eslint .",

@@ -1,0 +1,8 @@
+{
+  "name": "gitsnippet",
+  "version": "0.0.1",
+  "description": "Render snippets of code intelligently from git repos",
+  "main": "index.js",
+  "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT"
+}
