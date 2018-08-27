@@ -1,8 +1,7 @@
 {
   "name": "kitchen-sink",
   "private": true,
-  "description":
-    "Gatsby example site using all of the mdx features. For PRs and testing",
+  "description": "Gatsby example site using all of the mdx features. For PRs and testing",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "version": "0.0.1",
   "dependencies": {
@@ -32,6 +31,6 @@
   },
   "devDependencies": {
     "mdx-deck": "^1.5.7",
-    "styled-components": "^3.4.1"
+    "styled-components": "^3.4.5"
   }
 }

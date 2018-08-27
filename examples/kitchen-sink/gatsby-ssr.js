@@ -6,11 +6,9 @@ import Wrapper from "./root-wrapper";
 let emotionSSR = { html: undefined, css: undefined, ids: undefined };
 
 export const wrapRootElement = ({ element } /*, options*/) => {
-  const Body = <Wrapper>{element}</Wrapper>;
-
-  emotionSSR = extractCritical(renderToString(<Body />));
-
-  return Body;
+  const string = renderToString(<Wrapper>{element}</Wrapper>);
+  emotionSSR = extractCritical(string);
+  return <Wrapper>{element}</Wrapper>;
 };
 
 export const onRenderBody = ({ setHeadComponents }) => {
