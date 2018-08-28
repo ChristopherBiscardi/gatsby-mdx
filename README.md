@@ -173,10 +173,11 @@ Pages can be created programmatically by combining `gatsby-source-filesystem` in
 `gatsby-config.js` with some `createPage` calls.
 
 ```javascript
-# gatsby-config.js
+// gatsby-config.js
+
 module.exports = {
   plugins: [
-  `gatsby-mdx`,
+    `gatsby-mdx`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -189,7 +190,8 @@ module.exports = {
 ```
 
 ```javascript
-# gatsby-node.js
+// gatsby-node.js
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
@@ -269,9 +271,9 @@ custom `code` element to MDXProvider.
 ![react-live](./img/react-live.png)
 
 ```javascript
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from "@mdx-js/tag";
 
 const MyCodeComponent = ({ children, ...props }) => (
   <LiveProvider code={children}>
@@ -281,11 +283,13 @@ const MyCodeComponent = ({ children, ...props }) => (
   </LiveProvider>
 );
 
-export default MyPageLayout extends Component {
+export default class MyPageLayout extends Component {
   render() {
-    return <MDXProvider components={{code: MyCodeComponent}}>
-      <div>{this.props.children}</div>
-    </MDXProvider>
+    return (
+      <MDXProvider components={{ code: MyCodeComponent }}>
+        <div>{this.props.children}</div>
+      </MDXProvider>
+    );
   }
 }
 ```
