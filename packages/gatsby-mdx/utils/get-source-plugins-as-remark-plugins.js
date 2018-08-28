@@ -1,12 +1,31 @@
 const visit = require("unist-util-visit");
 const _ = require("lodash");
+const HTMLtoJSX = require("htmltojsx");
+const map = require("unist-util-map");
 const debug = require("debug")("get-source-plugins-as-remark-plugins");
 
 let fileNodes;
 
+const htmlToJSXConverter = new HTMLtoJSX({
+  createClass: false
+});
+
 // ensure only one `/` in new url
 const withPathPrefix = (url, pathPrefix) =>
   (pathPrefix + url).replace(/\/\//, `/`);
+
+const isJSXRegex = /<[A-Z]/g;
+const htmlToJSXPlugin = () =>
+  function transformer(ast) {
+    const astMapped = map(ast, node => {
+      if (node.type === "html" && !isJSXRegex.test(node.value)) {
+        return { ...node, value: htmlToJSXConverter.convert(node.value) };
+      } else {
+        return node;
+      }
+    });
+    return astMapped;
+  };
 
 module.exports = async function getSourcePluginsAsRemarkPlugins({
   gatsbyRemarkPlugins,
@@ -73,8 +92,8 @@ module.exports = async function getSourcePluginsAsRemarkPlugins({
     });
 
   if (pathPlugin) {
-    return [pathPlugin, ...userPlugins];
+    return [pathPlugin, ...userPlugins, htmlToJSXPlugin];
   } else {
-    return userPlugins;
+    return [...userPlugins, htmlToJSXPlugin];
   }
 };
