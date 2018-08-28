@@ -16,6 +16,7 @@ module.exports = {
         mdPlugins: [require("remark-toc")],
         gatsbyRemarkPlugins: [
           { resolve: `gatsby-remark-katex` },
+          { resolve: "gatsby-remark-autolink-headers" },
           { resolve: "gatsby-remark-prismjs", options: {} }
         ]
       }
