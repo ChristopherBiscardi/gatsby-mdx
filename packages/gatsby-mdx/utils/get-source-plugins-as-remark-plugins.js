@@ -2,6 +2,12 @@ const visit = require("unist-util-visit");
 const _ = require("lodash");
 const debug = require("debug")("get-source-plugins-as-remark-plugins");
 
+let fileNodes;
+
+// ensure only one `/` in new url
+const withPathPrefix = (url, pathPrefix) =>
+  (pathPrefix + url).replace(/\/\//, `/`);
+
 module.exports = async function getSourcePluginsAsRemarkPlugins({
   gatsbyRemarkPlugins,
   mdxNode,
