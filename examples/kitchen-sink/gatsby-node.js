@@ -13,13 +13,15 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   tableOfContents
-                  fileAbsolutePath
+                  parent {
+                    ... on File {
+                      absolutePath
+                      name
+                      sourceInstanceName
+                    }
+                  }
                   code {
                     scope
-                  }
-                  fileNode {
-                    name
-                    sourceInstanceName
                   }
                 }
               }
@@ -34,13 +36,12 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
-          if (node.fileNode.sourceInstanceName === "slides") {
+          if (node.parent.sourceInstanceName === "slides") {
             createPage({
-              path: `/${node.fileNode.sourceInstanceName}/${
-                node.fileNode.name
-              }`,
+              path: `/${node.parent.sourceInstanceName}/${node.parent.name}`,
               component:
-                node.fileAbsolutePath /* componentWithMDXScope(
+                node.parent
+                  .absolutePath /* componentWithMDXScope(
                             path.resolve("./src/components/mdx-runtime-slides-test.js"),
                             node.codeScope,
                             __dirname
@@ -51,16 +52,14 @@ exports.createPages = ({ graphql, actions }) => {
             });
           } else {
             createPage({
-              path: `/${node.fileNode.sourceInstanceName}/${
-                node.fileNode.name
-              }`,
+              path: `/${node.parent.sourceInstanceName}/${node.parent.name}`,
               component: componentWithMDXScope(
                 path.resolve("./src/components/mdx-runtime-test.js"),
                 node.code.scope,
                 __dirname
               ),
               context: {
-                absPath: node.absolutePath,
+                absPath: node.parent.absolutePath,
                 tableOfContents: node.tableOfContents,
                 id: node.id
               }

@@ -7,8 +7,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
     {
-      resolve: `gatsby-mdx`,
-      options: {}
+      resolve: `gatsby-mdx`
     },
     {
       resolve: "gatsby-source-filesystem",

@@ -8,11 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Added
 
-- Enable MDX Rendering from GraphQL queries
+- Allow transformers to be specified as objects
+- Enable filtering nodes out of transformer processing
 
 ### Changed
 
-- Split mdx-deck support into gatsby-plugin-mdx-deck
+### Removed
+
+- fileNode, fileAbsolutePath, and relativePath are no longer fields on
+  the mdx graphql schema. Use fragments on the parent instead. This
+  fixes the parent/child warning in #83
+
+## [xxx]
+
+### Added
+
+- Enable MDX Rendering from GraphQL queries
 
 ## [0.0.7] - 2018-08-05
 

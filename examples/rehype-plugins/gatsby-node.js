@@ -13,13 +13,15 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   tableOfContents
-                  fileAbsolutePath
                   code {
                     scope
                   }
-                  fileNode {
-                    name
-                    sourceInstanceName
+                  parent {
+                    ... on File {
+                      absolutePath
+                      name
+                      sourceInstanceName
+                    }
                   }
                 }
               }
@@ -35,14 +37,14 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
-            path: `/${node.fileNode.sourceInstanceName}/${node.fileNode.name}`,
+            path: `/${node.parent.sourceInstanceName}/${node.parent.name}`,
             component: componentWithMDXScope(
               path.resolve('./src/components/content-layout.js'),
               node.code.scope,
               __dirname
             ),
             context: {
-              absPath: node.absolutePath,
+              absPath: node.parent.absolutePath,
               tableOfContents: node.tableOfContents,
               id: node.id,
             },

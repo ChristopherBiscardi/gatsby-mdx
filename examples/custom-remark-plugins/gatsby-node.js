@@ -8,10 +8,12 @@ exports.createPages = ({ graphql, actions }) => {
             allMdx {
               edges {
                 node {
-                  relativePath
-                  fileAbsolutePath
-                  fileNode {
-                    name
+                  parent {
+                    ... on File {
+                      absolutePath
+                      relativePath
+                      name
+                    }
                   }
                 }
               }
@@ -27,9 +29,9 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
-            path: `/non-page/${node.fileNode.name}`,
-            component: node.fileAbsolutePath, //blogPost,
-            context: { absPath: node.absolutePath }
+            path: `/non-page/${node.parent.name}`,
+            component: node.parent.absolutePath,
+            context: { absPath: node.parent.absolutePath }
           });
         });
       })

@@ -149,10 +149,12 @@ query MDXQuery {
   allMdx {
     edges {
       node {
-        relativePath
-        fileAbsolutePath
-        fileNode {
-          name
+        parent {
+          ... on File {
+            name
+            absolutePath
+            relativePath
+          }
         }
         timeToRead
         frontmatter {
@@ -202,9 +204,11 @@ exports.createPages = ({ graphql, actions }) => {
             allMdx {
               edges {
                 node {
-                  fileAbsolutePath
-                  fileNode {
-                    name
+                  parent {
+                    ... on File {
+                      name
+                      absolutePath
+                    }
                   }
                 }
               }
@@ -220,9 +224,9 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
-            path: `/non-page/${node.fileNode.name}`,
-            component: node.fileAbsolutePath, //blogPost,
-            context: { absPath: node.fileAbsolutePath }
+            path: `/non-page/${node.parent.name}`,
+            component: node.absolutePath,
+            context: { absPath: node.absolutePath }
           });
         });
       })

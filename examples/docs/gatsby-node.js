@@ -13,7 +13,6 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   tableOfContents
-                  fileAbsolutePath
                   fields {
                     slug
                   }
@@ -41,7 +40,6 @@ exports.createPages = ({ graphql, actions }) => {
               __dirname
             ),
             context: {
-              absPath: node.absolutePath,
               tableOfContents: node.tableOfContents,
               id: node.id
             }
@@ -60,11 +58,12 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateNode = async ({ node, actions }) => {
+exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = node.fileNode.relativePath.replace(node.fileNode.ext, "");
+    const parent = getNode(node.parent);
+    const value = parent.relativePath.replace(parent.ext, "");
     createNodeField({
       name: `slug`,
       node,
