@@ -25,7 +25,6 @@ const BabelPluginPluckImports = require("babel-plugin-pluck-imports");
 const objRestSpread = require("@babel/plugin-proposal-object-rest-spread");
 const babel = require("@babel/core");
 const rawMDX = require("@mdx-js/mdx");
-const Promise = require(`bluebird`);
 
 const debug = require("debug")("gatsby-mdx:extend-node-type");
 const mdx = require("./utils/mdx");

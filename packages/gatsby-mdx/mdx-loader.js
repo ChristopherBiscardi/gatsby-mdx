@@ -121,7 +121,6 @@ export default DefaultLayout
 ${contentWithoutFrontmatter}`;
   }
 
-  debug("pre-plugins");
   const gatsbyRemarkPluginsAsMDPlugins = await getSourcePluginsAsRemarkPlugins({
     gatsbyRemarkPlugins: options.gatsbyRemarkPlugins,
     markdownNode: undefined,
@@ -138,7 +137,6 @@ ${contentWithoutFrontmatter}`;
     mdPlugins: options.mdPlugins.concat(gatsbyRemarkPluginsAsMDPlugins)
   });
 
-  debug("code", code);
   return callback(
     null,
     `import React from 'react'

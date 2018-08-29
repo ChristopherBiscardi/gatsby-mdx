@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby MDX Kitchen Sink`
+    title: `Gatsby MDX with Custom Remark Plugins`
   },
   plugins: [
     `gatsby-plugin-emotion`,
@@ -8,7 +8,6 @@ module.exports = {
     {
       resolve: `gatsby-mdx`,
       options: {
-        root: __dirname,
         extensions: [".mdx", ".md"],
         defaultLayout: require.resolve(
           "./src/components/default-page-layout.js"
