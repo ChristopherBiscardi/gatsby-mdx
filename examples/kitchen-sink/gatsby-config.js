@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby MDX Kitchen Sink`
@@ -10,7 +8,7 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: [".mdx", ".md"],
-        decks: [path.resolve("./decks")],
+
         defaultLayouts: {
           posts: require.resolve("./src/components/default-post-layout.js"),
           default: require.resolve("./src/components/default-page-layout.js"),
@@ -23,13 +21,6 @@ module.exports = {
       options: {
         name: "posts",
         path: `${__dirname}/content/`
-      }
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "slides",
-        path: `${__dirname}/decks/`
       }
     },
     "gatsby-transformer-remark",

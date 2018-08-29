@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby MDX Kitchen Sink`
+    title: `Gatsby MDX with Custom Remark Plugins`
   },
   plugins: [
     `gatsby-plugin-emotion`,
@@ -12,7 +12,12 @@ module.exports = {
         defaultLayout: require.resolve(
           "./src/components/default-page-layout.js"
         ),
-        mdPlugins: [require("remark-toc")]
+        mdPlugins: [require("remark-toc")],
+        gatsbyRemarkPlugins: [
+          { resolve: `gatsby-remark-katex` },
+          { resolve: "gatsby-remark-autolink-headers" },
+          { resolve: "gatsby-remark-prismjs", options: {} }
+        ]
       }
     },
     {

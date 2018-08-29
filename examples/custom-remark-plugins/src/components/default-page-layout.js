@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "katex/dist/katex.min.css";
+import "./prism.css";
 
 export default class DefaultPageLayout extends Component {
   render() {
