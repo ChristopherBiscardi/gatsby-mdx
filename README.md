@@ -23,10 +23,6 @@ The best of both worlds. :globe_with_meridians:
 
 [See the MDX specification](https://github.com/mdx-js/specification)
 
-## Plugin Options
-
-# Getting Ambitious
-
 ## Using Design System Components
 
 Using MDX, you can replace every HTML element that Markdown renders with a
@@ -54,37 +50,6 @@ export default function Layout({ children }) {
       {children}
     </MDXProvider>
   );
-}
-```
-
-## Editable Code Blocks
-
-To make every markdown code block an editable live example, you can pass in a
-custom `code` element to MDXProvider.
-
-![react-live](./img/react-live.png)
-
-```javascript
-import React, { Component } from "react";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import { MDXProvider } from "@mdx-js/tag";
-
-const MyCodeComponent = ({ children, ...props }) => (
-  <LiveProvider code={children}>
-    <LiveEditor />
-    <LiveError />
-    <LivePreview />
-  </LiveProvider>
-);
-
-export default class MyPageLayout extends Component {
-  render() {
-    return (
-      <MDXProvider components={{ code: MyCodeComponent }}>
-        <div>{this.props.children}</div>
-      </MDXProvider>
-    );
-  }
 }
 ```
 
