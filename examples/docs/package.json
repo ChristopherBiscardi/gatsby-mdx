@@ -5,6 +5,7 @@
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "version": "0.0.1",
   "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@mdx-js/loader": "^0.15.0-2",
     "@mdx-js/mdx": "^0.15.0-2",
     "emotion": "^9.1.3",

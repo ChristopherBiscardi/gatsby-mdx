@@ -12,7 +12,7 @@
     "lint": "eslint ."
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "prettier --parser flow --write", "git add"],
+    "*.{js,jsx}": ["eslint --fix", "prettier --write", "git add"],
     "*.json": ["prettier --parser json --write", "git add"],
     "*.{graphql,gql}": ["prettier --parser graphql --write", "git add"],
     "*.{md,markdown}": ["prettier --parser markdown --write", "git add"],
