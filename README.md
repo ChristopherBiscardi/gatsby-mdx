@@ -10,8 +10,7 @@ integrations for ambitious projects. It integrates [MDX][mdx] with
 [Gatsby][gatsby] to enable rich JAMStack applications. Using
 gatsby-mdx you can build [interactive software documentation
 sites](#editable-code-blocks), [apply design system
-components](#using-design-system-components) to rendered markdown,
-[give a presentation][mdx-deck], and more...
+components](#using-design-system-components) to rendered markdown and more...
 
 [Read the Docs](https://gatsby-mdx.netlify.com)
 
@@ -23,14 +22,9 @@ The best of both worlds. :globe_with_meridians:
 
 [See the MDX specification](https://github.com/mdx-js/specification)
 
-## Extensions
-
-- [MDX Deck](examples/docs/content/docs/extensions/mdx-deck.mdx)
-
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 [mdx]: https://github.com/mdx-js/mdx
 [gatsby]: https://www.gatsbyjs.org/
-[mdx-deck]: https://github.com/jxnblk/mdx-deck
