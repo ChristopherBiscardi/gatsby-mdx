@@ -3,33 +3,6 @@ import { StaticQuery, graphql } from "gatsby";
 import styled from "react-emotion";
 import { ExternalLink } from "react-feather";
 import Link from "./link";
-/* 
- * // prettier-ignore
- * const nav = [
- *   "/",
- *   "/docs",
- *   [
- *     "/docs/installation",
- *     "/docs/guides",
- *     [
- *       "/docs/guides/creating-interactive-code-blocks",
- *       "/docs/guides/mdx-file-extensions",
- *       "/docs/guides/programmatically-creating-pages",
- *       "/docs/guides/querying-mdx-content-via-graphql",
- *       "/docs/guides/using-design-system-components",
- *       "/docs/guides/using-mdx-layouts",
- *       "/docs/guides/writing-pages-in-mdx",
- *     ]
- *   ],
- *   "/docs/api-reference",
- *   "/docs/extensions",
- *   [
- *     "/docs/extensions/mdx-deck"
- *   ],
- *   "/help",
- *   "/repl"
- * ];
- *  */
 
 const Logo = styled(props => (
   <h1 {...props}>

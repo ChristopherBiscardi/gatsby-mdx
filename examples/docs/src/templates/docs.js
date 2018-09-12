@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import styled, { injectGlobal } from "react-emotion";
@@ -67,6 +68,9 @@ export default class MDXRuntimeTest extends Component {
 
     return (
       <Layout {...this.props}>
+        <Helmet>
+          <title>{mdx.frontmatter.title}</title>
+        </Helmet>
         <h1 css={{ fontSize: `2.5rem`, marginBottom: `2rem` }}>
           {mdx.frontmatter.title}
         </h1>
