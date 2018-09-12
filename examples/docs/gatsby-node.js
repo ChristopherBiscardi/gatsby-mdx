@@ -33,14 +33,13 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
-            path: node.fields.slug,
+            path: node.fields.slug ? node.fields.slug : "/",
             component: componentWithMDXScope(
-              path.resolve("./src/docs-layout.js"),
+              path.resolve("./src/templates/docs.js"),
               node.code.scope,
               __dirname
             ),
             context: {
-              tableOfContents: node.tableOfContents,
               id: node.id
             }
           });
@@ -70,11 +69,16 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
   if (node.internal.type === `Mdx`) {
     const parent = getNode(node.parent);
-    const value = parent.relativePath.replace(parent.ext, "");
+    let value = parent.relativePath.replace(parent.ext, "");
+
+    if (value === "index") {
+      value = "";
+    }
+
     createNodeField({
       name: `slug`,
       node,
-      value
+      value: `/${value}`
     });
   }
 };
