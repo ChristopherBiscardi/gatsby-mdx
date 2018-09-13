@@ -1,5 +1,6 @@
 const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 const path = require("path");
+const startCase = require("lodash.startcase");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -11,7 +12,9 @@ exports.createPages = ({ graphql, actions }) => {
             allMdx {
               edges {
                 node {
-                  id
+                  fields {
+                    id
+                  }
                   tableOfContents
                   fields {
                     slug
@@ -36,11 +39,10 @@ exports.createPages = ({ graphql, actions }) => {
             path: node.fields.slug ? node.fields.slug : "/",
             component: componentWithMDXScope(
               path.resolve("./src/templates/docs.js"),
-              node.code.scope,
-              __dirname
+              node.code.scope
             ),
             context: {
-              id: node.id
+              id: node.fields.id
             }
           });
         });
@@ -79,6 +81,18 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       node,
       value: `/${value}`
+    });
+
+    createNodeField({
+      name: "id",
+      node,
+      value: node.id
+    });
+
+    createNodeField({
+      name: "title",
+      node,
+      value: node.frontmatter.title || startCase(parent.name)
     });
   }
 };

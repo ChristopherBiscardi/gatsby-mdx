@@ -69,10 +69,10 @@ export default class MDXRuntimeTest extends Component {
     return (
       <Layout {...this.props}>
         <Helmet>
-          <title>{mdx.frontmatter.title}</title>
+          <title>{mdx.fields.title}</title>
         </Helmet>
         <h1 css={{ fontSize: `2.5rem`, marginBottom: `2rem` }}>
-          {mdx.frontmatter.title}
+          {mdx.fields.title}
         </h1>
         <MDXRenderer>{mdx.code.body}</MDXRenderer>
         <Edit>
@@ -92,9 +92,9 @@ export const pageQuery = graphql`
         docsLocation
       }
     }
-    mdx(id: { eq: $id }) {
-      id
-      frontmatter {
+    mdx(fields: { id: { eq: $id } }) {
+      fields {
+        id
         title
       }
       code {

@@ -111,11 +111,9 @@ const SidebarLayout = ({ location }) => (
         allMdx {
           edges {
             node {
-              frontmatter {
-                title
-              }
               fields {
                 slug
+                title
               }
             }
           }
@@ -161,7 +159,7 @@ const SidebarLayout = ({ location }) => (
               level={node.fields.slug.split("/").length - 2}
               active={location.pathname === node.fields.slug}
             >
-              {node.frontmatter.title}
+              {node.fields.title}
             </ListItem>
           );
         });

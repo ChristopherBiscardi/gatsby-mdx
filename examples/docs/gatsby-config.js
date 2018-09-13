@@ -5,10 +5,24 @@ module.exports = {
     docsLocation: `https://github.com/ChristopherBiscardi/gatsby-mdx/tree/master/examples/docs/content`
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true
+            }
+          }
+        ]
+      }
+    },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
-    `gatsby-mdx`,
     {
       resolve: "gatsby-source-filesystem",
       options: {

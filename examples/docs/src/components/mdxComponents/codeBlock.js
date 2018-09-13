@@ -1,5 +1,6 @@
 import * as React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
+import prismTheme from "prism-react-renderer/themes/nightOwl";
 import Pre from "./pre";
 
 /** Removes the last token from a code example if it's empty. */
@@ -17,7 +18,12 @@ function cleanTokens(tokens) {
 
 /* eslint-disable react/jsx-key */
 const CodeBlock = ({ children: exampleCode }) => (
-  <Highlight {...defaultProps} code={exampleCode} language="jsx">
+  <Highlight
+    {...defaultProps}
+    code={exampleCode}
+    language="jsx"
+    theme={prismTheme}
+  >
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <Pre className={className} style={style} p={3}>
         {cleanTokens(tokens).map((line, i) => (

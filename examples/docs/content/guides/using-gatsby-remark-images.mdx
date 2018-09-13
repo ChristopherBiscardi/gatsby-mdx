@@ -1,0 +1,55 @@
+Gatsby-MDX is compatible with all of the [gatsby-remark
+plugins](https://next.gatsbyjs.org/packages/gatsby-remark-images/?=gatsby-remark),
+including
+[gatsby-remark-images](https://next.gatsbyjs.org/packages/gatsby-remark-images/?=gatsby-remark).
+
+To enable gatsby-remark-images, you first need to install the relevant
+image plugins:
+
+```shell
+yarn add gatsby-sharp gatsby-remark-images
+```
+
+If you don't have `gatsby-source-filesystem` installed, also install that.
+
+Then configure the plugins. `gatsby-source-filesystem` needs to be
+pointed at wherever you have your images on disk,
+`gatsby-remark-images` needs to be a sub-plugin of `gatsby-mdx`, and
+`gatsby-plugin-sharp` can be included on it's own.
+
+```js
+plugins:[
+  `gatsby-plugin-sharp`,
+  {
+    resolve: `gatsby-mdx`,
+    options: {
+      gatsbyRemarkPlugins: [
+      {
+        resolve: "gatsby-remark-images",
+        options: {
+          maxWidth: 1035,
+          sizeByPixelDensity: true
+        }
+      }
+      ]
+    }
+  },
+  {
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: `${__dirname}/src/pages`
+    }
+  },
+]
+```
+
+Then enjoy using images in your MDX files!
+
+```markdown
+![my image](./my-awesome-image.png)
+```
+
+![Oswaldo Martinex](./oswaldo-martinez-199232-unsplash.jpg)
+
+Photo by Oswaldo Martinez
+
