@@ -3,7 +3,15 @@ module.exports = {
     title: `Gatsby MDX with Custom Remark Plugins`
   },
   plugins: [
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "liek",
+        path: `${__dirname}/src/pages`
+      }
+    },
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-mdx`,
@@ -15,6 +23,13 @@ module.exports = {
         mdPlugins: [require("remark-toc")],
         gatsbyRemarkPlugins: [
           { resolve: `gatsby-remark-katex` },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true
+            }
+          },
           { resolve: "gatsby-remark-autolink-headers" },
           { resolve: "gatsby-remark-prismjs", options: {} }
         ]
