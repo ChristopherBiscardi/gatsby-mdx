@@ -39,6 +39,11 @@ const Sidebar = styled.aside`
   height: 100vh;
   overflow: auto;
   position: fixed;
+
+  @media only screen and (max-width: 50rem) {
+    width: 100%;
+    position: relative;
+  }
 `;
 
 // eslint-disable-next-line no-unused-vars

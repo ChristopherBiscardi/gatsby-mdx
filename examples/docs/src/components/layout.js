@@ -8,6 +8,10 @@ import Sidebar from "./sidebar";
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: 50rem) {
+    display: block;
+  }
 `;
 
 const Content = styled.main`
@@ -15,12 +19,23 @@ const Content = styled.main`
   flex-grow: 1;
   justify-content: center;
   margin: 3rem 0 0 0;
-  margin-left: 20rem;
+  padding-left: 20rem;
+  width: 100%;
+
+  @media only screen and (max-width: 50rem) {
+    padding-left: 0;
+  }
 `;
 
 const MaxWidth = styled.div`
   max-width: 100%;
   width: 50rem;
+  padding: 0 2rem;
+
+  @media only screen and (max-width: 50rem) {
+    width: 100%;
+    position: relative;
+  }
 `;
 
 const Layout = ({ children, location }) => (
