@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "dependencies": {
-    "gatsby": "next",
-    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby": "2.0.0",
+    "gatsby-plugin-react-helmet": "^3.0.0",
     "react-helmet": "^5.2.0"
   },
   "keywords": ["gatsby"],
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@mapbox/rehype-prism": "^0.2.0",
+    "@mapbox/rehype-prism": "^0.3.0",
     "gatsby-mdx": "*",
     "prettier": "^1.13.7"
   },

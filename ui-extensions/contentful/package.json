@@ -19,7 +19,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-sandpack": "^1.0.0",
-    "react-smooshpack": "0.0.44"
+    "react-smooshpack": "0.0.49"
   },
   "devDependencies": {
     "contentful-cli": "^0.16.1",
