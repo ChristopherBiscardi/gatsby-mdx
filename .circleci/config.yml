@@ -47,13 +47,13 @@ jobs:
       - run: yarn publish-ci
 workflows:
   version: 2
-    build-test-and-deploy:
-      jobs:
-        - build
-        - publish:
-            requires:
-              build
-            filters:
-              branches:
-                only: /^master$/
+  build-test-and-deploy:
+    jobs:
+      - build
+      - publish:
+          requires:
+            build
+          filters:
+            branches:
+              only: /^master$/
             
