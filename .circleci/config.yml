@@ -52,7 +52,7 @@ workflows:
       - build
       - publish:
           requires:
-            build
+            - build
           filters:
             branches:
               only: /^master$/
