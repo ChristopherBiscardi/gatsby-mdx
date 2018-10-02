@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-      - run: yarn publish-ci
+      - run: npm run publish-ci
 workflows:
   version: 2
   build-test-and-deploy:
