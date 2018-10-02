@@ -31,3 +31,8 @@ To submit a feature request, follow [this
 link](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/new?template=feature_request.md),
 which will prepopulate a new GitHub issue with the feature request
 template.
+
+## Writing Tests
+
+If you write tests, write them colocated with the file they're testing
+using the `filename.test.js` convention.
