@@ -9,7 +9,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "prepublish": "eslint .",
-    "publish-ci": "lerna publish --canary --preid ci --npm-tag=ci",
+    "publish-ci": "lerna publish -y --canary --preid ci --npm-tag=ci",
     "lint": "eslint ."
   },
   "lint-staged": {
