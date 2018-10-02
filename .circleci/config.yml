@@ -44,6 +44,9 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run: yarn publish-ci
 workflows:
   version: 2
