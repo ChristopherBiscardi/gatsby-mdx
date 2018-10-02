@@ -13,6 +13,7 @@ describe("babel-plugin-gather-exports", () => {
   test("gathers all exports", () => {
     const instance = new Plugin();
     const result = babel.transform(testContents, {
+      configFile: false,
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });

@@ -18,6 +18,7 @@ describe("babel-plugin-pluck-exports", () => {
   test("plucks pageQuery", () => {
     const instance = new Plugin();
     const result = babel.transform(testContents, {
+      configFile: false,
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });

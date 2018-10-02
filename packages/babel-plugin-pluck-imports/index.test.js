@@ -18,6 +18,7 @@ describe("babel-plugin-pluck-imports", () => {
   test("plucks imports", () => {
     const instance = new Plugin();
     const result = babel.transform(testContents, {
+      configFile: false,
       plugins: [instance.plugin],
       presets: [require("@babel/preset-react")]
     });
