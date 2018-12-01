@@ -1,8 +1,7 @@
 {
   "name": "babel-plugin-pluck-imports",
   "version": "0.0.1",
-  "description":
-    "Babel plugin to find and remove imports from a file and return them",
+  "description": "Babel plugin to find and remove imports from a file and return them",
   "main": "index.js",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
@@ -10,7 +9,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/cli": "^7.1.5",
     "@babel/preset-react": "^7.0.0-rc.1",
     "jest": "^23.4.2"
   },
