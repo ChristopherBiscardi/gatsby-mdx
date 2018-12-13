@@ -38,6 +38,9 @@
     "prettier": "^1.13.7",
     "react-test-renderer": "^16.5.2"
   },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules/", ".cache"]
+  },
   "keywords": [
     "gatsby",
     "gatsby-plugin",
