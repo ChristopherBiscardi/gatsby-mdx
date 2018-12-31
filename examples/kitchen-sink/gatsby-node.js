@@ -1,4 +1,3 @@
-const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 const path = require("path");
 
 exports.createPages = ({ graphql, actions }) => {
@@ -20,9 +19,6 @@ exports.createPages = ({ graphql, actions }) => {
                       sourceInstanceName
                     }
                   }
-                  code {
-                    scope
-                  }
                 }
               }
             }
@@ -38,11 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
             path: `/${node.parent.sourceInstanceName}/${node.parent.name}`,
-            component: componentWithMDXScope(
-              path.resolve("./src/components/mdx-runtime-test.js"),
-              node.code.scope,
-              __dirname
-            ),
+            component: path.resolve("./src/components/mdx-runtime-test.js"),
             context: {
               absPath: node.parent.absolutePath,
               tableOfContents: node.tableOfContents,
@@ -54,11 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
         // manually create a page with a lot of mdx
         createPage({
           path: `/generated/multi-mdx`,
-          component: componentWithMDXScope(
-            path.resolve("./src/components/mdx-runtime-multi-test.js"),
-            result.data.allMdx.edges.map(({ node }) => node.code.scope),
-            __dirname
-          ),
+          component: path.resolve("./src/components/mdx-runtime-multi-test.js"),
           context: {}
         });
       })
