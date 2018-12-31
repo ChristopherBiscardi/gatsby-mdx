@@ -1,4 +1,3 @@
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope')
 const path = require('path')
 
 exports.createPages = ({ graphql, actions }) => {
@@ -13,9 +12,6 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   tableOfContents
-                  code {
-                    scope
-                  }
                   parent {
                     ... on File {
                       absolutePath
@@ -38,11 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
             path: `/${node.parent.sourceInstanceName}/${node.parent.name}`,
-            component: componentWithMDXScope(
-              path.resolve('./src/components/content-layout.js'),
-              node.code.scope,
-              __dirname
-            ),
+            component: path.resolve('./src/components/content-layout.js'),
             context: {
               absPath: node.parent.absolutePath,
               tableOfContents: node.tableOfContents,

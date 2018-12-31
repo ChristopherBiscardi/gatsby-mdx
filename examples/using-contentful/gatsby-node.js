@@ -2,7 +2,6 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope')
 const slugify = require('slugify')
 
 exports.createPages = ({ graphql, actions }) => {
@@ -47,11 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: post.node.fields.slug,
-            component: componentWithMDXScope(
-              blogPost,
-              post.node.code.scope,
-              __dirname
-            ),
+            component: blogPost,
             context: {
               slug: post.node.fields.slug,
               previous,
