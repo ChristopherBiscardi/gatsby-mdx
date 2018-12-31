@@ -2,30 +2,24 @@
 title: "API Reference"
 ---
 
-## Plugin Options
+# Plugin Options
 
-### File Extensions
+The default plugin options are
 
-`gatsby-mdx` can apply to different file extensions. By default it
-conservatively applies to only `.mdx` files, but can also be made to apply to
-`.md` files.
-
-```javascript
-module.exports = {
-  plugins: [
-    {
-      resolve: `gatsby-mdx`,
-      options: {
-        extensions: [".mdx", ".md"]
-      }
-    }
-  ]
-};
+```js
+{
+  defaultLayouts: {},
+  extensions: [".mdx"],
+  mediaTypes: ["text/markdown", "text/x-markdown"],
+  hastPlugins: [],
+  mdPlugins: [],
+  gatsbyRemarkPlugins: []
+},
 ```
 
 ## Default Layouts
 
-MDX supports layouts using the default export as such:
+MDX has the concept of a layout that is different than the Gatsby concept of a layout. MDX's layouts are written using the default export JavaScript syntax in a single MDX file. An MDX layout will wrap the MDX content in an additional component, so this can be a good place for page layout.
 
 ```javascript
 export default ({ children }) => (
@@ -85,3 +79,24 @@ module.exports = {
   ]
 };
 ```
+
+
+## File Extensions
+
+`gatsby-mdx` can apply to different file extensions. By default it
+conservatively applies to only `.mdx` files, but can also be made to apply to
+`.md` files.
+
+```javascript
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        extensions: [".mdx", ".md"]
+      }
+    }
+  ]
+};
+```
+

@@ -1,18 +1,7 @@
-import system from "system-components/emotion";
+import React from "react";
 
-const Heading = system(
-  {
-    is: "h2",
-    fontSize: 5,
-    fontWeight: "bold",
-    lineHeight: 1.25,
-    mt: 4,
-    mb: 3
-  },
-  "fontFamily",
-  "color",
-  "textAlign"
+const Heading = ({ as: Component, ...props }) => (
+  <Component {...props} css={{ marginTop: "1em" }} />
 );
-Heading.displayName = "Heading";
 
 export default Heading;

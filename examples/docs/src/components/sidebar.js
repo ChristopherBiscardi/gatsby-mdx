@@ -1,111 +1,124 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import styled from "react-emotion";
+import { css } from "@emotion/core";
 import { ExternalLink } from "react-feather";
 import Link from "./link";
 
-const Logo = styled(props => (
-  <h1 {...props}>
+const Logo = props => (
+  <h1
+    {...props}
+    css={css`
+      padding: 0.75rem 0 0.75rem 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      border-bottom: 1px solid #ede7f3;
+
+      a {
+        text-decoration: none;
+      }
+
+      span:first-child {
+        color: #663399;
+        color: black;
+        margin-right: 0.35rem;
+      }
+
+      span:last-child {
+        color: #f9ac00;
+      }
+    `}
+  >
     <Link to="/">
       <span>Gatsby</span>
       <span>MDX</span>
     </Link>
   </h1>
-))`
-  padding: 0.75rem 0 0.75rem 2rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  border-bottom: 1px solid #ede7f3;
+);
 
-  a {
-    text-decoration: none;
-  }
+const Sidebar = props => (
+  <aside
+    {...props}
+    css={css`
+      width: 20rem;
+      background: #fbfafc;
+      border-right: 1px solid #ede7f3;
+      height: 100vh;
+      overflow: auto;
+      position: fixed;
 
-  span:first-child {
-    color: #663399;
-    color: black;
-    margin-right: 0.35rem;
-  }
-
-  span:last-child {
-    color: #f9ac00;
-  }
-`;
-
-const Sidebar = styled.aside`
-  width: 20rem;
-  background: #fbfafc;
-  border-right: 1px solid #ede7f3;
-  height: 100vh;
-  overflow: auto;
-  position: fixed;
-
-  @media only screen and (max-width: 50rem) {
-    width: 100%;
-    position: relative;
-  }
-`;
+      @media only screen and (max-width: 50rem) {
+        width: 100%;
+        position: relative;
+      }
+    `}
+  />
+);
 
 // eslint-disable-next-line no-unused-vars
-const ListItem = styled(({ className, active, level, ...props }) => (
-  <li className={className}>
+const ListItem = ({ className, active, level, ...props }) => (
+  <li
+    className={className}
+    css={css`
+      list-style: none;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        font-weight: ${level === 0 ? 700 : 400};
+        padding: 0.45rem 0 0.45rem ${2 + (level || 0) * 1}rem;
+        display: block;
+        position: relative;
+
+        &:hover {
+          color: #663399;
+        }
+
+        ${active &&
+          css`
+            color: #663399;
+
+            &:before {
+              content: "";
+              display: block;
+              height: 0.35rem;
+              width: 0.35rem;
+              border-radius: 50%;
+              background: #663399;
+              position: absolute;
+              left: 1rem;
+              top: 52%;
+              transform: translateY(-50%);
+            }
+          `} // external link icon
+    svg {
+          float: right;
+          margin-right: 1rem;
+        }
+      }
+    `}
+  >
     <Link {...props} />
   </li>
-))`
-  list-style: none;
+);
 
-  a {
-    color: inherit;
-    text-decoration: none;
-    font-weight: ${({ level }) => (level === 0 ? 700 : 400)};
-    padding: 0.45rem 0 0.45rem ${props => 2 + (props.level || 0) * 1}rem;
-    display: block;
-    position: relative;
+const Divider = props => (
+  <li
+    {...props}
+    css={css`
+      list-style: none;
+      padding: 0.5rem 0;
 
-    &:hover {
-      color: #663399;
-    }
-
-    ${props =>
-      props.active &&
-      `
-      color: #663399;
-
-      &:before {
-        content: "";
-        display: block;
-        height: .35rem;
-        width: .35rem;
-        border-radius: 50%;
-        background: #663399;
-        position: absolute;
-        left: 1rem;
-        top: 52%;
-        transform: translateY(-50%);
+      hr {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid #ede7f3;
       }
-    `} // external link icon
-    svg {
-      float: right;
-      margin-right: 1rem;
-    }
-  }
-`;
-
-const Divider = styled(props => (
-  <li {...props}>
+    `}
+  >
     <hr />
   </li>
-))`
-  list-style: none;
-  padding: 0.5rem 0;
-
-  hr {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-bottom: 1px solid #ede7f3;
-  }
-`;
+);
 
 const forcedNavOrder = ["/getting-started", "/guides"];
 

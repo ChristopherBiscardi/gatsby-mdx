@@ -1,0 +1,30 @@
+---
+title: "misc"
+---
+
+Things I have to document
+
+
+## Adding any const export to an MDX file includes it in the GraphQL schema
+
+
+```
+export const author = {
+	name: "chris"
+}
+```
+
+```graphql
+graphql`{
+  exports {
+    author {
+      name
+    }
+  }
+}`
+
+# frontmatter for pages in src/pages is automatically added to the pageContext
+
+```
+props.pageContext.frontmatter.title
+```
