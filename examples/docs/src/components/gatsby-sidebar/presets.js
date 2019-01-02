@@ -31,8 +31,8 @@ module.exports = {
     speedSlow: `350ms`
   },
   logoOffset: 1.8,
-  headerHeight: `3.5rem`,
-  bannerHeight: `2.5rem`,
+  headerHeight: `50px`,
+  bannerHeight: `0px`,
   sidebarUtilityHeight: `2.5rem`,
   pageHeadingDesktopWidth: `3.5rem`
 };

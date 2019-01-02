@@ -24,7 +24,7 @@ const Chevron = ({ isExpanded }) => (
   >
     <ChevronSvg
       cssProps={{
-        color: isExpanded ? "#8c65b3" : "#f5f3f7",
+        color: isExpanded ? "#8c65b3" : "#8c65b3",
         marginLeft: `auto`,
         marginRight: `auto`,
         transform: isExpanded ? `rotateX(180deg)` : `rotateX(0deg)`,

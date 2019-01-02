@@ -30,7 +30,8 @@ export const universalWrapRootElement = ({ element }) => (
             font-size: 16px;
           }
           a {
-            color: ${color.mdx};
+            color: #663399;
+            text-decoration: none;
           }
         `}
       />

@@ -2,6 +2,20 @@ import React from "react";
 import { Link } from "gatsby";
 import { color } from "./color";
 
+const linkStyles = {
+  cursor: "pointer",
+  color: color.white,
+  textDecoration: "none",
+  flex: 1,
+  display: "flex",
+  borderBottom: `0px solid ${color.white}`,
+  height: "100%",
+  padding: "12px",
+  "&:hover": {
+    borderWidth: "3px"
+  }
+};
+
 export const Navigation = () => (
   <div
     css={{
@@ -24,19 +38,7 @@ export const Navigation = () => (
           ([label, href]) => (
             <li key={label}>
               <Link
-                css={{
-                  cursor: "pointer",
-                  color: color.white,
-                  textDecoration: "none",
-                  flex: 1,
-                  display: "flex",
-                  borderBottom: `0px solid ${color.white}`,
-                  height: "100%",
-                  padding: "12px",
-                  "&:hover": {
-                    borderWidth: "3px"
-                  }
-                }}
+                css={linkStyles}
                 activeStyle={{
                   color: color.mdx,
                   borderColor: color.mdx,
@@ -49,6 +51,14 @@ export const Navigation = () => (
             </li>
           )
         )}
+        <li>
+          <a
+            css={linkStyles}
+            href="https://github.com/ChristopherBiscardi/gatsby-mdx"
+          >
+            GitHub
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
