@@ -8,7 +8,8 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: [".mdx", ".md"],
-
+        globalScope: `import { SketchPicker } from 'react-color';
+        export default { Picker: SketchPicker }`,
         defaultLayouts: {
           posts: require.resolve("./src/components/default-post-layout.js"),
           default: require.resolve("./src/components/default-page-layout.js")
