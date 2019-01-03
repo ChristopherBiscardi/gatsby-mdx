@@ -1,0 +1,89 @@
+---
+title: "defaultLayouts"
+---
+
+# MDX Layouts
+
+## Usage
+
+`defaultLayouts` takes an object where the `key` is the `name` key of
+the `gatsby-source-filesystem` configuration you want to
+target. `default` applies to any MDX file that doesn't already have a
+layout defined, even if it's imported manually using `import MDX from
+'./thing.mdx`. 
+
+```js
+defaultLayouts: {
+  posts: require.resolve("./src/components/posts-layout.js"),
+  default: require.resolve("./src/components/default-page-layout.js")
+}
+```
+
+## Explanation
+
+MDX has the concept of a layout that is different than the Gatsby
+concept of a layout. MDX's layouts are written using the default
+export JavaScript syntax in a single MDX file. An MDX layout will wrap
+the MDX content in an additional component, so this can be a good
+place for page layout depending on how you are using MDX.
+
+```javascript
+export default ({ children }) => (
+  <div>
+    <h1>My Layout</h1>
+    <div>{children}</div>
+  </div>
+)
+
+
+# My MDX
+
+some content
+```
+
+or as an import:
+
+```javascript
+import PageLayout from './src/components/page-layout';
+
+export default PageLayout
+
+# My MDX
+
+some content
+```
+
+Sometimes you don't want to include the layout in every file, so `gatsby-mdx`
+offers the option to set default layouts in the `gatsby-config.js` plugin
+config. Set the key to the `name` set in the `gatsby-source-filesystem` config.
+If no matching default layout is found, the `default` default layout is used.
+
+You can also set `options.defaultLayout.default` if you only want to
+use one layout for all MDX pages that don't already have a layout defined.
+
+```javascript
+module.exports = {
+  siteMetadata: {
+    title: `Gatsby MDX Kitchen Sink`
+  },
+  plugins: [
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        defaultLayouts: {
+          posts: require.resolve("./src/components/posts-layout.js"),
+          default: require.resolve("./src/components/default-page-layout.js")
+        }
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts/`
+      }
+    }
+  ]
+};
+```
+
