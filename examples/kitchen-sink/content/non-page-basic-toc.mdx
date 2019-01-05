@@ -9,7 +9,8 @@ Text.
 # Something iffi
 
 export default (props) => {
-  const { children, pageContext } = props
+  const { children, pageContext, isHTMLRenderPass } = props
+  if(isHTMLRenderPass) { return <div/> }
   const Nav = ({ item, level }) => {
     let items = null
     if (item.items) {
