@@ -9,14 +9,14 @@ import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.mdx
+    const { blogpost: post } = this.props.data
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
-        <h1>{post.frontmatter.title}</h1>
+        <SEO title={post.title} />
+        <h1>{post.title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
@@ -25,9 +25,9 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date}
+          {post.updatedAt}
         </p>
-        <MDXRenderer>{post.code.body}</MDXRenderer>
+        <MDXRenderer>{post.mdxbodyNode.childMdx.code.body}</MDXRenderer>
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -46,15 +46,15 @@ class BlogPostTemplate extends React.Component {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link to={previous.slug} rel="prev">
+                ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link to={next.slug} rel="next">
+                {next.title} →
               </Link>
             )}
           </li>
@@ -74,15 +74,18 @@ export const pageQuery = graphql`
         author
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
+    blogpost: datoCmsBlogpost(slug: { eq: $slug }) {
       id
-      excerpt(pruneLength: 160)
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-      }
-      code {
-        body
+      title
+      slug
+      updatedAt
+      mdxbodyNode {
+        id
+        childMdx {
+          code {
+            body
+          }
+        }
       }
     }
   }
