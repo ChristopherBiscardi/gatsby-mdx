@@ -40,13 +40,5 @@
   },
   "jest": {
     "testPathIgnorePatterns": ["/node_modules/", ".cache"]
-  },
-  "keywords": [
-    "gatsby",
-    "gatsby-plugin",
-    "gatsby-transformer-plugin",
-    "mdx",
-    "markdown",
-    "remark"
-  ]
+  }
 }
