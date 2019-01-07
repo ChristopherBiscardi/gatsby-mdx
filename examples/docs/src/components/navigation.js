@@ -22,7 +22,10 @@ export const Navigation = () => (
       background: color.dark,
       color: color.gatsby,
       display: "flex",
-      height: "50px"
+      height: "50px",
+      position: "fixed",
+      zIndex: 1,
+      width: "100%"
     }}
   >
     <nav>

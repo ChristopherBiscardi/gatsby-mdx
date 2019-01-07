@@ -23,7 +23,7 @@ const Layout = ({ children, location, itemList }) => (
           display: flex;
           flex-grow: 1;
           justify-content: center;
-          margin: 3rem 0 0 0;
+          margin: 0;
           padding-left: 20rem;
           width: 100%;
 
@@ -37,6 +37,7 @@ const Layout = ({ children, location, itemList }) => (
             max-width: 100%;
             width: 50rem;
             padding: 0 2rem;
+            margin-top: 50px;
 
             @media only screen and (max-width: 50rem) {
               width: 100%;

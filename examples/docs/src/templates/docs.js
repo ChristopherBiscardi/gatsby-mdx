@@ -95,7 +95,6 @@ const DocLayout = ({ children, ...props }) =>
         return (
           <Layout {...props} itemList={itemList}>
             <Helmet />
-            <h1 css={{ fontSize: `2.5rem`, marginBottom: `2rem` }} />
             {children}
             <div
               css={{
