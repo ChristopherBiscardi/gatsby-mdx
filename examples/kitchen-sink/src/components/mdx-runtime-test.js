@@ -28,7 +28,7 @@ export default class MDXRuntimeTest extends Component {
 }
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query MDXRuntimeQuery($id: String!) {
     mdx(id: { eq: $id }) {
       id
       code {
