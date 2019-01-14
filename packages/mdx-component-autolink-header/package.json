@@ -1,0 +1,16 @@
+{
+  "name": "mdx-component-autolink-header",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT",
+  "scripts": {
+    "build": "microbundle -i src/index.js"
+  },
+  "dependencies": {
+    "github-slugger": "^1.2.1"
+  },
+  "devDependencies": {
+    "microbundle": "^0.9.0"
+  }
+}
