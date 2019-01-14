@@ -1,11 +1,14 @@
 {
   "name": "mdx-component-autolink-header",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/mdx-component-autolink-header.js",
+  "umd:main": "dist/mdx-component-autolink-header.umd.js",
+  "module": "dist/mdx-component-autolink-header.mjs",
+  "source": "src/mdx-component-autolink-header.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
   "scripts": {
-    "build": "microbundle -i src/index.js"
+    "build": "microbundle -i src/index.js -o dist --external react,github-slugger"
   },
   "dependencies": {
     "github-slugger": "^1.2.1"

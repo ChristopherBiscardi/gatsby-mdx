@@ -41,6 +41,7 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
+      - run: yarn workspace mdx-component-autolink-header build      
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
