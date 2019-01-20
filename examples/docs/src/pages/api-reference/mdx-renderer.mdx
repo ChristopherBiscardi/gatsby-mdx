@@ -1,0 +1,41 @@
+---
+title: MDXRenderer
+---
+
+# MDXRenderer
+
+## Usage
+
+```js
+import { MDXRenderer } from 'gatsby-mdx';
+
+export default class MyPageLayout {
+  render() {
+    <MDXRenderer>{this.props.data.mdx.code.body}</MDXRenderer>
+  }
+}
+
+export const pageQuery = graphql`
+  query MDXQuery($id: String!) {
+    mdx(id: { eq: $id }) {
+      id
+      code {
+        body
+      }
+    }
+  }
+`;
+```
+
+## Info
+
+`MDXRenderer` is a React component that takes *compiled* MDX content and
+renders it. You will need to use this if your MDX content is coming
+from a GraphQL page query or `StaticQuery`.
+
+`MDXRenderer` takes any prop and passes it on to your MDX content,
+just like a normal React component.
+
+```js
+<MDXRenderer title="My Stuff!">{mdx.code.body}</MDXRenderer>
+```

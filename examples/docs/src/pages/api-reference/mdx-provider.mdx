@@ -1,0 +1,43 @@
+---
+title: MDXProvider
+---
+
+# MDXProvider
+
+## Usage
+
+```js
+import { MDXProvider } from '@mdx-js/tag';
+
+const MyH1 = props => <h1 style={{ color: 'tomato' }} {...props} />
+const MyParagraph = props => <p style={{ fontSize: '18px', lineHeight: 1.6 }} />
+
+const components = {
+  h1: MyH1,
+  p: MyParagraph
+}
+
+export const wrapRootElement = ({ element }) => (
+  <MDXProvider components={components}>{element}</MDXProvider>
+)
+```
+
+## Info
+
+`MDXProvider` is a React component that allows you to replace the
+rendering of tags in MDX content. It does this by providing a list of
+components via context to the internal `MDXTag` component that handles
+rendering of base tags like `p` and `h1`. There are two special tags
+that can be replaced too: `inlineCode` and `wrapper`. `inlineCode` is
+for inline `<code>` and `wrapper` is the special element that wraps
+all of the MDX content.
+
+## Note
+
+It's important to define the `components` you pass in in a stable way
+so that the references don't change if you want to be able to navigate
+to a hash. That's why we defined `components` outside of any render
+functions in these examples.
+
+Read more over at the
+[mdx-js docs](https://mdxjs.com/getting-started/#mdxprovider).
