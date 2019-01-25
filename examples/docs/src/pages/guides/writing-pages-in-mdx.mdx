@@ -1,32 +1,41 @@
 ---
-title: "Writing Pages in MDX"
+title: Writing pages in MDX
 ---
+
+# Writing pages in MDX
 
 After [installing](/docs/guides/getting-started) the plugin, MDX files
 written in `src/pages` will turn into pages. This happens because
-gatsby bundles a [page-creator plugin][] by
-default. Pages are rendered at a URL that is constructed from the
-filesystem path inside `src/pages`. An MDX file at
-`src/pages/awesome.mdx` will result in a page being rendered at
-`mysite.com/awesome`.
+`gatsby-mdx` looks for MDX files and automatically transpiles them
+so that Gatsby internals can render them.
+
+Pages are rendered at a URL that is constructed from the filesystem
+path inside `src/pages`. An MDX file at `src/pages/awesome.mdx` will
+result in a page being rendered at `mysite.com/awesome`.
 
 ## GraphQL Queries
 
 You can fetch data to use in your MDX file by exporting a `pageQuery`
-in the same way you would for a .js page.
+in the same way you would for a `.js` page. The queried data is passed
+as a prop, and can be accessed inside any JSX block when writing in
+MDX:
 
 ```mdx
 import { graphql } from 'gatsby';
 
-export const pageQuery = graphql`
-  allSitePages {
-    TODO: flesh this query out
-  }
-`
-
 # My Awesome Page
 
-TODO: show prop usage from query
+Here's a paragraph, followed by a paragraph with data!
+
+<p>{props.data.site.siteMetadata.description}</p>
+
+export const pageQuery = graphql`
+  site {
+    siteMetadata {
+      description
+    }
+  }
+`
 ```
 
 [page-creator plugin]: https://www.npmjs.com/package/gatsby-plugin-page-creator
