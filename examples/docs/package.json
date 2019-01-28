@@ -34,6 +34,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "start": "yarn develop",
     "develop": "gatsby develop",
     "build": "gatsby build"
   },
