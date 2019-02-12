@@ -303,6 +303,8 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default PageTemplate
 ```
 
 That's it, you're done. Run `gatsby develop` and enjoy your new MDX
@@ -334,7 +336,7 @@ const BlogIndex = ({ data }) => {
             </Link>
             <p>{post.excerpt}</p>
           </li>
-        ))
+        ))}
       </ul>
     </div>
   )
