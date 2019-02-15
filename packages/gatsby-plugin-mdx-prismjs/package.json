@@ -1,0 +1,11 @@
+{
+  "name": "gatsby-plugin-mdx-prismjs",
+  "version": "2.0.0",
+  "main": "index.js",
+  "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT",
+  "dependencies": {
+    "mdx-utils": "^0.0.2",
+    "prism-react-renderer": "^0.1.5"
+  }
+}
