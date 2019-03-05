@@ -12,7 +12,7 @@
     "@mdx-js/tag": "^0.16.6",
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.22",
-    "gatsby-mdx": "^0.3.2",
+    "gatsby-mdx": "*",
     "gatsby-plugin-feed": "^2.0.8",
     "gatsby-plugin-google-analytics": "^2.0.5",
     "gatsby-plugin-manifest": "^2.0.5",
