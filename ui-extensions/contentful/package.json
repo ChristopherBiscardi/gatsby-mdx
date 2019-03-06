@@ -16,8 +16,8 @@
   "dependencies": {
     "@mdx-js/mdx": "^0.20.2",
     "@mdx-js/tag": "^0.18.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "react-sandpack": "^1.0.0",
     "react-smooshpack": "0.0.49"
   },
