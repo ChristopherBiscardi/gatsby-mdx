@@ -1,6 +1,5 @@
 import React from "react";
-import { MDXProvider } from "@mdx-js/tag";
-import { withMDXComponents } from "@mdx-js/tag/dist/mdx-provider";
+import { MDXProvider, withMDXComponents } from "@mdx-js/tag";
 import { MDXScopeProvider } from "./context";
 // this import, unlike the more complicated one below, executes the
 // mdx-scopes loader with no arguments. No funny-business.
