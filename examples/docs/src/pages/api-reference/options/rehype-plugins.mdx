@@ -1,17 +1,17 @@
 ---
-title: mdPlugins
+title: rehypePlugins
 ---
 
-# Remark Plugins
+# HAST Plugins
 
 This is a configuration option that is [mirrored from the core MDX
 processing pipeline](https://mdxjs.com/plugins). It enables the use of
-[remark
-plugins](https://github.com/remarkjs/remark/blob/master/doc/plugins.md)
+[rehype
+plugins](https://github.com/rehypejs/rehype/blob/master/doc/plugins.md)
 for processing MDX content.
 
 # Usage
 
 ```js
-mdPlugins: [require('remark-abbr')]
+rehypePlugins: [require('rehype-slug')]
 ```
