@@ -1,36 +1,8 @@
 import React, { Fragment } from "react";
 import Helmet from "react-helmet";
-import { injectGlobal } from "emotion";
-import styled, { css } from "react-emotion";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 import { graphql, Link } from "gatsby";
-
-injectGlobal`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
-
-injectGlobal`
-  html, body {
-    font-family: -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      "Roboto",
-      "Roboto Light",
-      "Oxygen",
-      "Ubuntu",
-      "Cantarell",
-      "Fira Sans",
-      "Droid Sans",
-      "Helvetica Neue",
-      sans-serif,
-      "Apple Color Emoji",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-`;
 
 const Wrapper = styled("section")`
   align-items: center;

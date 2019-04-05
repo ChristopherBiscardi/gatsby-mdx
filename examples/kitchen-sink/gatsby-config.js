@@ -5,6 +5,7 @@ module.exports = {
     description: "everything you can do with gatsby-mdx"
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-mdx`,
@@ -26,49 +27,6 @@ module.exports = {
       }
     },
     "gatsby-transformer-remark",
-    `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        feeds: [
-          {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
-                return {
-                  ...edge.node.frontmatter,
-                  description: edge.node.excerpt,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }]
-                };
-              });
-            },
-            query: `
-      {
-        allMdx(
-          limit: 1000,
-          sort: {
-            order: DESC,
-            fields: [frontmatter___title]
-          }
-        ) {
-          edges {
-            node {
-              frontmatter {
-                title
-              }
-              fields {slug}
-              excerpt
-              html
-            }
-          }
-        }
-      }
-    `,
-            output: `rss.xml`
-          }
-        ]
-      }
-    }
+    `gatsby-plugin-offline`
   ]
 };

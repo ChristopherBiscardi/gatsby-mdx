@@ -101,6 +101,9 @@ export const _frontmatter = ${JSON.stringify(data)}`;
    *   cache
    * }); */
 
+  /**
+   * Support gatsby-remark source plugins
+   */
   const gatsbyRemarkPluginsAsremarkPlugins = await getSourcePluginsAsRemarkPlugins(
     {
       gatsbyRemarkPlugins: options.gatsbyRemarkPlugins,

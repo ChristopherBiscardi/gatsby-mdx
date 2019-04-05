@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
-import { css } from "emotion";
+import { css } from "@emotion/core";
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 
@@ -23,7 +23,7 @@ export default class MDXRuntimeMultiTest extends Component {
                 pageContext={{ tableOfContents: node.tableOfContents }}
                 scope={__mdxScope}
               >
-                {node.code.body}
+                {node.body}
               </MDXRenderer>
             </div>
           ))}
@@ -39,9 +39,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          code {
-            body
-          }
+          body
           tableOfContents
         }
       }
