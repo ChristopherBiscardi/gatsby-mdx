@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Gatsby MDX Kitchen Sink`,
-    siteUrl: "gatsby-mdx-kitchen-sink.netlify.com",
+    siteUrl: "https://gatsby-mdx-kitchen-sink.netlify.com",
     description: "everything you can do with gatsby-mdx"
   },
   plugins: [
