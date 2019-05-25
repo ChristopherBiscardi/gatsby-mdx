@@ -7,7 +7,7 @@
   "dependencies": {
     "gatsby": "^2.3.14",
     "gatsby-image": "^2.0.20",
-    "gatsby-mdx": "*",
+    "gatsby-plugin-mdx": "^1.0.0",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-mdx-prismjs": "^2.0.0",
     "gatsby-plugin-offline": "^2.0.16",

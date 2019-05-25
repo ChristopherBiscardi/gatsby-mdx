@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: { default: require.resolve("./src/templates/docs.js") },
         gatsbyRemarkPlugins: [

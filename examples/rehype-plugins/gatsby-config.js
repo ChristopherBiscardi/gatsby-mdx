@@ -7,9 +7,8 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        root: __dirname,
         rehypePlugins: [[prism, { ignoreMissing: true }]],
       },
     },

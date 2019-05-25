@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@mapbox/rehype-prism": "^0.3.0",
-    "@mdx-js/mdx": "^1.0.0-alpha.17",
-    "@mdx-js/react": "^1.0.0-alpha.17",
-    "gatsby-mdx": "*",
+    "@mdx-js/mdx": "^1.0.0",
+    "@mdx-js/react": "^1.0.0",
+    "gatsby-plugin-mdx": "^1.0.0",
     "prettier": "^1.13.7"
   },
   "repository": {

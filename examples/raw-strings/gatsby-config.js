@@ -3,7 +3,7 @@ module.exports = {
     title: `Gatsby MDX raw strings`
   },
   plugins: [
-    `gatsby-mdx`,
+    `gatsby-plugin-mdx`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
