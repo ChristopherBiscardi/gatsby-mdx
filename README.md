@@ -1,18 +1,8 @@
-![Logo](./img/gatsby-mdx.png)
 
-[![Build Status](https://circleci.com/gh/ChristopherBiscardi/gatsby-mdx.svg?style=svg)](https://circleci.com/gh/ChristopherBiscardi/gatsby-mdx)
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/mdx)
 
-# Gatsby MDX
-
-Gatsby-MDX is a fully featured MDX transformer, runtime, and ecosystem
-integrations for ambitious projects. It integrates [MDX][mdx] with
-[Gatsby][gatsby] to enable rich JAMStack applications. Using
-gatsby-mdx you can build [interactive software documentation
-sites](#editable-code-blocks), [apply design system
-components](#using-design-system-components) to rendered markdown and more...
-
-[Read the Docs](https://gatsby-mdx.netlify.com)
+Gatsby+MDX has been merged into the Gatsby repo. Please go there for core work and documentation now: https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-mdx
+This repo is now a set of ecosystem components like mdx-utils and pre-made components for syntax highlighting, etc.
 
 ## What is MDX?
 
