@@ -1,9 +1,0 @@
-{
-  "componentChunkName": "component---cache-dev-404-page-js",
-  "path": "/dev-404-page/",
-  "webpackCompilationHash": "174aa671eec52b0f4428",
-  "result": {
-    "data": { "allSitePage": { "nodes": [{ "path": "/" }] } },
-    "pageContext": { "isCreatedByStatefulCreatePages": true }
-  }
-}
